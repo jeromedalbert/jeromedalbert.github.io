@@ -1,0 +1,35 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+.twitter {
+  background-color: #f3ede1;
+  padding: 10px;
+  border: 1px solid #d9d2c1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-left: -1px;
+}
+
+.twitter-margin-top {
+  height: 10px
+}
+
+.stack-overflow p {
+  margin-top: 10px;
+}
+
+aside.sidebar a.stack-overflow-link {
+  text-decoration: none;
+  white-space: normal;
+}
+
+.page article header {
+  padding-top: 0;
+}
+
+.nolinenos {
+  .highlight .line-numbers {
+    display: none;
+  }
+}
