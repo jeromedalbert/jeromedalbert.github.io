@@ -9,6 +9,10 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
   margin-left: -1px;
+
+  @media (max-width: 767px) {
+    width: 240px;
+  }
 }
 
 .twitter-margin-top {
@@ -32,4 +36,41 @@ aside.sidebar a.stack-overflow-link {
   .highlight .line-numbers {
     display: none;
   }
+}
+
+img {
+  &.personal-photo {
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 0;
+
+    @media (max-width: 864px) {
+      float: none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &.noborder {
+    border: none;
+
+    box-sizing: none;
+    -webkit-box-sizing: none;
+    -moz-box-sizing: none;
+
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+
+    border-radius: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    -ms-border-radius: none;
+    -o-border-radius: none;
+  }
+}
+
+.center-content {
+  text-align: center;
 }
