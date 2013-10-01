@@ -103,11 +103,9 @@ article + article {
     text-decoration: none;
     color: mix($text-color, $text-color-light);
     @extend .serif;
-    @include transition(background-color .5s);
     &:hover {
-      background: $link-color-hover;
       text-shadow: none;
-      color: $main-bg;
+      background: darken($main-bg, 15);
     }
   }
   footer {
