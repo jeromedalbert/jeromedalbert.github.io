@@ -16,8 +16,11 @@
   </header>
 {% endunless %}
 {% if index %}
-  <div class="entry-content">{{ content | excerpt }}</div>
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
+  <div class="entry-content">
+    {{ content | excerpt }}
+    {% if excerpted == 'true' %} <a class="ellipsis" href="{{ root_url }}{{ post.url }}">[...]</a>{% endif %}
+  </div>
   {% if excerpted == 'true' %}
     <footer>
       <a rel="full-article" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>

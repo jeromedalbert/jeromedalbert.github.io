@@ -102,6 +102,7 @@ article + article {
     margin-right: .5em;
     text-decoration: none;
     color: mix($text-color, $text-color-light);
+    font-family: $article-font;
     @extend .serif;
     &:hover {
       text-shadow: none;

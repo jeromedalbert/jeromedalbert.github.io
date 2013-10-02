@@ -42,7 +42,7 @@ img {
   &.personal-photo {
     float: left;
     margin-right: 1.5em;
-    margin-bottom: 0;
+    margin-bottom: 1em;
 
     @media (max-width: 864px) {
       float: none;
@@ -73,4 +73,22 @@ img {
 
 .center-content {
   text-align: center;
+}
+
+article {
+  font-family: $article-font;
+  font-size: 16px;
+
+  h2, h3, h4, h5, h6 {
+    font-family: $article-font;
+  }
+}
+
+a.ellipsis {
+  color: $text-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
