@@ -6,7 +6,7 @@ sharing: false
 footer: true
 ---
 
-{% img personal-photo /images/pages/jerome.jpg Probably me. %}
+{% img left personal-photo /images/pages/jerome.jpg Probably me. %}
 
 My name is Jerome Dalbert. I'm originally from Bordeaux, France, but recently I have moved a bit.
 

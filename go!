@@ -1,0 +1,8 @@
+#!/bin/bash
+
+git add --all
+git commit -v --amend
+git push -f
+
+bundle exec rake generate
+bundle exec rake deploy

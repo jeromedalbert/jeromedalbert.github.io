@@ -38,12 +38,8 @@ aside.sidebar a.stack-overflow-link {
   }
 }
 
-img {
+article img {
   &.personal-photo {
-    float: left;
-    margin-right: 1.5em;
-    margin-bottom: 1em;
-
     @media (max-width: 864px) {
       float: none;
       display: block;
