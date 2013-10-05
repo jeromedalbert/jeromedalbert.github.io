@@ -21,7 +21,7 @@ Here is the result (click for a full size view):
 Most of Ruby's guts at one glance: pretty neat, huh ?
 
  - Modules are on the top left.
- - The usual types are here: strings, arrays, hashes, numbers, "booleans" (actually `TrueClass`/`FalseClass`/`NilClass`).
+ - The usual types are here: strings, arrays, hashes, numbers, "booleans" (actually `TrueClass` and `FalseClass`).
  - The error hierarchy is on the right.
  - Other classes are in the middle.
 

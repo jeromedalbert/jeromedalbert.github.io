@@ -18,6 +18,6 @@ Before that, I worked on websites and booking/retail systems as a Java engineer 
 Joking aside, I enjoy developing in Ruby: it is fun, terse, leverages powerful paradigms, and the community really cares about OOP and software craftsmanship.
 
 Hence the idea of this blog where I intend to share some day-to-day Ruby discoveries, my thoughts about the art of crafting software, and
-maybe a few general posts about life as a developer.
+maybe a few general posts about life as an IT professional.
 
 If you just came here for my professional details, feel free to check my <a href="http://www.linkedin.com/in/jeromedalbert" target="_blank">LinkedIn profile</a> ;-).
