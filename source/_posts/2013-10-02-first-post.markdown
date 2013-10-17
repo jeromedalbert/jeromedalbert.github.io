@@ -24,12 +24,11 @@ Motivation comes in mysterious ways !
 
 ## So, what is this blog going to talk about ?
 
-Contrary to what it may seem, this is not a Ruby only blog.
-I just found the logo cool, so I had to come up with a related title.
+Contrary to what it may seem, this is not a Ruby only blog: I just found the title cool.
 This is a tech blog at the moment. I will post some day-to-day discoveries and tips and tricks, share my thoughts about software craftsmanship (or whatever this pontificating word means) and maybe talk about life as an IT professional in general.
 
 ## How often will you post ?
-This is my first time blogging so let's start small. I will write at least 2 posts a month. This number will go up when I feel inspired.
+This is my first time blogging so let's start small. I will write 1 or 2 posts a month. This number can go up if I feel inspired.
 
 ## What can I do to help ?
 

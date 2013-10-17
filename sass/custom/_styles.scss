@@ -36,6 +36,10 @@ aside.sidebar a.stack-overflow-link {
   .highlight .line-numbers {
     display: none;
   }
+
+  &.short {
+    max-width: 550px;
+  }
 }
 
 article img {
@@ -67,6 +71,10 @@ article img {
   }
 }
 
+.margintop {
+  margin-top: 8px;
+}
+
 .center-content {
   text-align: center;
 }
@@ -80,6 +88,10 @@ article {
   }
 }
 
+h1.comments {
+  font-family: $article-font;
+}
+
 a.ellipsis {
   color: $text-color;
   text-decoration: none;
@@ -88,3 +100,11 @@ a.ellipsis {
     text-decoration: underline;
   }
 }
+
+.references {
+  margin-top: 40px;
+  margin-bottom: -20px;
+
+  font-size: 14px;
+}
+
