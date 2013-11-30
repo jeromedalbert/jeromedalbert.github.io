@@ -20,8 +20,10 @@ body > header {
 
   #logo {
     display: inline-block;
-    // background: image-url("ruby-logo.png");
-    width: 185px;
-    height: 103px;
+    background: image-url("ruby_logo.png");
+    width: 100px;
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
