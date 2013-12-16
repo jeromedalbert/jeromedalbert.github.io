@@ -108,3 +108,40 @@ a.ellipsis {
   font-size: 14px;
 }
 
+#logo {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  background: image-url('logo/ruby.png');
+
+  &, .sparkle {
+    width: 100px;
+    height: 72px;
+  }
+
+  .sparkle {
+    position: absolute;
+  }
+
+  .sparkle {
+    opacity: 0;
+
+    &.sparkle1 { background-image: image-url('logo/sparkle1.png') }
+    &.sparkle2 { background-image: image-url('logo/sparkle2.png') }
+    &.sparkle3 { background-image: image-url('logo/sparkle3.png') }
+    &.sparkle4 { background-image: image-url('logo/sparkle4.png') }
+    &.sparkle5 { background-image: image-url('logo/sparkle5.png') }
+  }
+
+  &:hover {
+    .sparkle1 { @include animation(show 0.1s linear 0.1s) }
+    .sparkle2 { @include animation(show 0.1s linear 0.2s) }
+    .sparkle3 { @include animation(show 0.1s linear 0.3s) }
+    .sparkle4 { @include animation(show 0.1s linear 0.4s) }
+    .sparkle5 { @include animation(show 0.1s linear 0.5s) }
+  }
+}
+
+@include keyframes(show) {
+  0%, 100% { opacity: 1 }
+}
