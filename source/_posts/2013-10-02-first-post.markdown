@@ -6,6 +6,8 @@ comments: true
 categories:
 ---
 
+<img class="right" src="http://farm4.staticflickr.com/3684/11411728145_a0900f4ef7_o.jpg" style="margin-right: 8%;" title="First!" />
+
 Hi everyone, welcome to my blog!
 
 Let me tell you an inspiring story of honor and glory.
