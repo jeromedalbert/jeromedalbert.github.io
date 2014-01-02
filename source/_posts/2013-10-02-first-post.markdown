@@ -6,7 +6,7 @@ comments: true
 categories:
 ---
 
-<img class="right" src="http://farm4.staticflickr.com/3684/11411728145_a0900f4ef7_o.jpg" style="margin-right: 8%;" title="First!" />
+<img class="header" src="http://farm4.staticflickr.com/3684/11411728145_48e776258e_m.jpg" title="First!" />
 
 Hi everyone, welcome to my blog!
 

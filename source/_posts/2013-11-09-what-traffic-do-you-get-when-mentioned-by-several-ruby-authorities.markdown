@@ -6,6 +6,8 @@ comments: true
 categories: 
 ---
 
+{% img header noarticle http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg Jam. Yummy. %}
+
 It looks like my latest blog post, [A Diagram of the Ruby Core Object Model](/a-diagram-of-the-ruby-core-object-model), has had quite a bit of a success in the Ruby community.
 Mostly in the educational sphere, that is, <!--more-->Ruby beginners (the targeted audience) but also... trainers!  
 Well, as long as you guys cite your sources, it's fine by me!
@@ -24,5 +26,4 @@ Finally, two weeks later, my post <a href="http://rubyweekly.com/archive/167.htm
 In terms of metrics, in two weeks, I had 5000 hits, 70 related tweets, and a couple of new followers and e-mail messages.  
 {% img http://farm6.staticflickr.com/5477/10781634074_0c64336424_c.jpg Show me the money! %}
 
-Overall, I am surprised and humbled by the attention this post had. It looks like people want more of this kind of visual explanations: I admit it lacks a bit on the Internet.  
-I have no other cool diagram ideas at the moment, so my next blog posts will be more classic, sorry! But I keep this in mind and will insert some schemas/diagrams from time to time, when it makes sense.
+Overall, I am surprised and humbled by the attention this post had. It looks like people want more of this kind of visual explanations: I admit it lacks a bit on the Internet.

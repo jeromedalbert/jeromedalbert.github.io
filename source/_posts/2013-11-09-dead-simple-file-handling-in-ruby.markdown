@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-{% img right margintop http://upload.wikimedia.org/wikipedia/commons/3/36/Ken_n_dennis.jpg 200 The first hipsters. %}
+{% img margintop header http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg The first hipsters (developers of C). %}
 
 **Common scenario**  
 You are writing a basic Ruby script that needs to read or write in some text files.  
@@ -15,13 +15,7 @@ You end up on the usual tutorials and Stack Overflow answers that tell you to op
 
 It's OK, it works.
 But you may think:  
-"I'm in the 21<sup>st</sup> century goddammit. I just want to read/write in a file, spare me the details!
-
-Isn't Ruby supposed to be high level?  
-Isn't Ruby supposed to be extremely terse?  
-Isn't Ruby supposed to be super expressive as well?
-
-File writing and reading should be simple as hell, right?"
+"I'm in the 21<sup>st</sup> century goddammit. I just want to read/write in a file, spare me the details!"
 
 Worry not, fellow citizen. Have a look at the code below.  
 In all of these examples, Ruby automatically opens and closes the file. No need to think about it.

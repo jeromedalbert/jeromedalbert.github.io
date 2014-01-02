@@ -6,6 +6,8 @@ comments: true
 categories: 
 ---
 
+{% img header noarticle http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg Yep, this is a diagram. %}
+
 I am a visual learner. A picture is worth a thousand words.
 
 When I started learning Ruby, I could not find a decent diagram that would just sum up the Ruby classes, modules, and their hierarchy.

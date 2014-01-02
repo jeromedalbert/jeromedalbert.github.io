@@ -75,6 +75,23 @@ article img {
   margin-top: 8px;
 }
 
+article img.header {
+  float: right;
+  margin-left: 1.5em;
+  max-width: 240px;
+
+  @media (max-width: 320px) {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+article.hentry img.header.noarticle {
+  display: none;
+}
+
 .center-content {
   text-align: center;
 }
@@ -86,6 +103,10 @@ article {
   h2, h3, h4, h5, h6 {
     font-family: $article-font;
   }
+}
+
+.blog-index article {
+  min-height: 350px;
 }
 
 h1.comments {
