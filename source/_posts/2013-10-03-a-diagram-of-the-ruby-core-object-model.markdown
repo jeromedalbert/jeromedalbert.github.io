@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-{% img header noarticle http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg Yep, this is a diagram. %}
+{% img header noarticle http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg Yep, this is a diagram. What an acute sense of observation. I'm proud of you. %}
 
 I am a visual learner. A picture is worth a thousand words.
 

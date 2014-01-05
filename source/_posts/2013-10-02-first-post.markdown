@@ -30,7 +30,7 @@ Contrary to what it may seem, this is not a Ruby only blog: I just found the tit
 This is a tech blog at the moment. I will post some day-to-day discoveries and tips and tricks, share my thoughts about software craftsmanship (or whatever this pontificating word means) and maybe talk about life as an IT professional in general.
 
 ## How often will you post ?
-This is my first time blogging so let's start small. I will write 1 or 2 posts a month. This number can go up if I feel inspired.
+I will write about 1 post a month. This number can go up if I feel inspired.
 
 ## What can I do to help ?
 

@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-{% img margintop header http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg The first hipsters (developers of C). %}
+{% img margintop header http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg The first hipsters. These guys developed the C programming language. %}
 
 **Common scenario**  
 You are writing a basic Ruby script that needs to read or write in some text files.  
@@ -22,20 +22,17 @@ In all of these examples, Ruby automatically opens and closes the file. No need 
 
 ## Read a whole file
 
-<div class="nolinenos">
 ``` ruby
 content = File.read('input.txt')
 ```
-</div>
 
 Done.
 
 ## Write to a file
-<div class="nolinenos">
+
 ``` ruby
 File.write('output.txt', 'Hello world')
 ```
-</div>
 
 'Nuff said.
 
@@ -47,28 +44,22 @@ Just for the sake of being comprehensive, here are the other 20%\*, slightly mor
 
 #### Read a file line by line (useful if you don't want to load a big file entirely in memory):
 
-<div class="nolinenos">
 ``` ruby
 File.open('input.txt', 'r').each_line { |line| puts line }
 ```
-</div>
 Another way to do it is `File.foreach('input.txt') { |line| puts line }`, though I don't find `foreach` very Ruby idiomatic.
 
 #### Put the lines of a file in an array of lines (I've never needed to do it, but this is for reference):
 
-<div class="nolinenos">
 ``` ruby
 lines = File.readlines('input.txt')
 ```
-</div>
 
 #### Append some text at the end of a file:
 
-<div class="nolinenos">
 ``` ruby
 File.open('file.txt', 'a') { |file| file.write('some text') }
 ```
-</div>
  
 You can also do `file << 'some text'`. Or `file.puts('some text')` if you want to insert the text with a `\n` in the end.
 

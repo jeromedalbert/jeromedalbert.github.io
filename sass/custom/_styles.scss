@@ -32,14 +32,12 @@ aside.sidebar a.stack-overflow-link {
   padding-top: 0;
 }
 
-.nolinenos {
-  .highlight .line-numbers {
-    display: none;
-  }
+.highlight .line-numbers {
+  display: none;
+}
 
-  &.short {
-    max-width: 550px;
-  }
+.linenos .highlight .line-numbers {
+  display: block;
 }
 
 article img {
@@ -69,31 +67,23 @@ article img {
     -ms-border-radius: none;
     -o-border-radius: none;
   }
-}
 
-.margintop {
-  margin-top: 8px;
-}
+  &.header {
+    float: right;
+    margin-left: 1.5em;
+    max-width: 240px;
 
-article img.header {
-  float: right;
-  margin-left: 1.5em;
-  max-width: 240px;
-
-  @media (max-width: 320px) {
-    float: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    @media (max-width: 320px) {
+      float: none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
 article.hentry img.header.noarticle {
   display: none;
-}
-
-.center-content {
-  text-align: center;
 }
 
 article {
@@ -103,6 +93,22 @@ article {
   h2, h3, h4, h5, h6 {
     font-family: $article-font;
   }
+
+  .left-header {
+    width: 70%;
+
+    @media (max-width: 320px) {
+      width: auto;
+    }
+  }
+}
+
+.margintop {
+  margin-top: 8px;
+}
+
+.center-content {
+  text-align: center;
 }
 
 .blog-index article {
