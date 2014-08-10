@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-08-10T15:32:37+01:00</updated>
+  <updated>2014-08-10T15:33:29+01:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -96,7 +96,7 @@ When in a Git repo, I like to display the branch name followed by a dirty/clean 
 
 <p><img src="https://farm6.staticflickr.com/5562/14685304517_58427bb488_o.png" title="Dirty vs Clean" ></p>
 
-<p>At the time of writing, Prezto themes mainly use <code>vcs_info</code> which can detect staged and unstaged changes (i.e. a dirty state).
+<p>At the time of writing, most Prezto themes use <code>vcs_info</code> which can detect staged and unstaged changes (i.e. a dirty state).
 But there&rsquo;s no hook for a clean state, so when there are no changes, the prompt will just display nothing.
 I would much rather have a satisfying green little tick that means &ldquo;Nothing else to do! Well done mate, you can have a beer* now&rdquo;.</p>
 
