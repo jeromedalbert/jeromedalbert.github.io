@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-08-10T15:33:29+01:00</updated>
+  <updated>2014-08-10T15:58:15+01:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -26,7 +26,7 @@ I recommend it to Zsh first-timers: within minutes they can enjoy autocompletion
 <p>BUT. It&rsquo;s God. Damn. Slow!<!--more--></p>
 
 <p>Wanna spend the night happily coding and hacking in the &ldquo;zone&rdquo;?
-Here, wait for 1 long second whenever you open up a new terminal window/tab.
+Here, wait for 1 long second (or more) whenever you open up a new terminal window/tab.
 Are you triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
 
 <p>Enter <a href="https://github.com/sorin-ionescu/prezto" target="blank">Prezto</a>, a.k.a the &ldquo;Instantly Awesome Zsh&rdquo;. It began as a fork of Oh-my-zsh, but was later completely rewritten with optimization in mind, and moved to its own repo.</p>
