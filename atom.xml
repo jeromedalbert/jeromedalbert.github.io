@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-08-10T06:29:21+01:00</updated>
+  <updated>2014-08-10T06:31:58+01:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -217,7 +217,7 @@ and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
 <code>git</code>: adds useful aliases and functions like the <code>git-info</code> one that we discussed above.</p>
 
 <ul>
-<li>When pressing tab to complete a command, I didn&rsquo;t like the category menus, so I commented these lines out in <code>~.zprezto/modules/completion/init.zsh</code>:</li>
+<li>When pressing tab to complete a command, I didn&rsquo;t like the category menus, so I commented these lines out in <code>~/.zprezto/modules/completion/init.zsh</code>:</li>
 </ul>
 
 
