@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby: How to iterate "the right way" - Jerome's Adventures in Software</title>
+  <meta name="author" content="Jerome Dalbert">
+
+  
+  <meta name="description" content="If any of you have written code in the last year that had an explicit loop [&#8230;], you don&#8217;t understand collections.Professor David West &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jeromedalbert.com/ruby-how-to-iterate-the-right-way">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/jeromedalbert" rel="alternate" title="Jerome's Adventures in Software" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44431393-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">
+    <div id="logo"><div class="sparkle sparkle1"></div><div class="sparkle sparkle2"></div><div class="sparkle sparkle3"></div><div class="sparkle sparkle4"></div><div class="sparkle sparkle5"></div></div><br/>
+  </a>
+  <h1><a href="/">Jerome's Adventures in Software</a></h1>
+  
+    <h2>An online novel of code and romance</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/jeromedalbert" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jeromedalbert.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About me</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby: How to Iterate "the Right Way"</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-05T14:12:00+00:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="header" src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title="Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here." ></p>
+
+<div class="left-header">
+<blockquote><p>If any of you have written code in the last year that had an explicit loop [&#8230;], you don&#8217;t understand collections.</p><footer><strong>Professor David West</strong> <cite><a href="http://vimeo.com/77415896#t=48m04s" target="blank">OOP Is Dead! Long Live OODD!</a></cite></footer></blockquote>
+</div>
+
+
+<p>You may be baffled by this quote if you come from a C-flavored language such as C++ and Java<!--more-->, where explicit loops like <code>for</code> and <code>foreach</code> are part of your everyday life.</p>
+
+<p>Luckily, collection methods come built-in with Ruby. Once you realize how powerful they are compared to explicit loops, there is no going back!</p>
+
+<h2>each</h2>
+
+<p>Let&rsquo;s begin with the collection method that has the least added value.<br/>
+<code>each</code> is the equivalent of a <code>for</code> loop. Use it when you need to iterate on a collection with side effects.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># do side effects, such as printing to the console, writing to a file, persisting in database, etc.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For your information, Ruby also has a <code>for</code> statement (nobody uses it though).</p>
+
+<h2>map</h2>
+
+<p><em>(alias to avoid: collect)</em><br/>
+Whenever you need to transform some values into some other values, <code>map</code> is your friend.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span> <span class="c1"># returns [2, 4, 6]</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="o">].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span> <span class="c1"># returns [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="o">].</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:upcase</span><span class="p">)</span> <span class="c1"># same result as before, for experienced lazy Ruby programmers</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>map</code> is your bread and butter. I probably use it more than <code>each</code>.</p>
+
+<h2>select</h2>
+
+<p><em>(alias to avoid: find_all)</em><br/>
+Very useful when you need to filter (i.e. &ldquo;select&rdquo;) multiple values.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">}</span> <span class="c1"># returns [2, 4]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>reject</h2>
+
+<p>The contrary of <code>select</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">reject</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">}</span> <span class="c1"># returns [1, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>partition</h2>
+
+<p><code>select</code> + <code>reject</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="o">].</span><span class="n">partition</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">even?</span> <span class="p">}</span> <span class="c1"># returns [[2, 4], [3, 5]]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>find</h2>
+
+<p><em>(alias to avoid: detect)</em><br/>
+Very useful when you need to find a single value.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="o">].</span><span class="n">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="p">}</span> <span class="c1"># Returns 8 (the first found element)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>reduce</h2>
+
+<p><em>(alias to avoid: inject)</em><br/>
+<code>reduce</code> is very important in functionnal programming, where it is also known as <code>fold</code>. Indeed, it can be used to build everything else: <code>map</code>, <code>select</code>, <code>find</code>, <code>min</code>, <code>max</code>, sums, etc.<br/>
+The idea is to use an accumulator that will contain the final result. This accumulator can be anything: a number, an array, a hash, etc.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="o">|</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">e</span> <span class="p">}</span> <span class="c1"># returns 6 (0 + 1 + 2 + 3).</span>
+</span><span class='line'>                                         <span class="c1"># 0 is the initial value of the accumulator.</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">reduce</span> <span class="p">{</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="o">|</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">e</span> <span class="p">}</span> <span class="c1"># same result as before. When we omit the accumulator initial</span>
+</span><span class='line'>                                      <span class="c1"># value, the first element of the array is chosen.</span>
+</span><span class='line'>                                      <span class="c1"># So in our case, 1 is the initial value of the accumulator.</span>
+</span><span class='line'>                                      <span class="c1"># What is computed is 1 + 2 + 3.</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">reduce</span><span class="p">(</span><span class="ss">:+</span><span class="p">)</span> <span class="c1"># same result as before, for experienced lazy Ruby programmers.</span>
+</span><span class='line'>                     <span class="c1"># Reduce accepts :+, but you can also use &amp;:+</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">reduce</span> <span class="p">{</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="o">|</span> <span class="n">acc</span> <span class="o">*</span> <span class="n">e</span> <span class="p">}</span> <span class="c1"># returns 24 (2 * 3 * 4)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">reduce</span> <span class="p">{</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">e</span><span class="o">|</span> <span class="n">acc</span> <span class="o">*</span> <span class="n">e</span> <span class="p">}</span> <span class="c1"># returns 0 (0 * 2 * 3 * 4)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I rarely use <code>reduce</code> in practice, but it is fun and good to know for your computer science culture.</p>
+
+<h2>all?</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="o">].</span><span class="n">all?</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">even?</span> <span class="p">}</span> <span class="c1"># returns true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Self-explanatory.</p>
+
+<h2>any?</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">42</span><span class="o">].</span><span class="n">any?</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="p">}</span> <span class="c1"># returns true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Self-explanatory.</p>
+
+<p>By the way, I like using the &ldquo;no block&rdquo; form of <code>any?</code> to ask if something &ldquo;has any&rdquo; significant element:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">any?</span> <span class="c1"># returns true</span>
+</span><span class='line'><span class="o">[].</span><span class="n">any?</span> <span class="c1"># returns false</span>
+</span><span class='line'><span class="o">[</span><span class="kp">nil</span><span class="o">].</span><span class="n">any?</span> <span class="c1"># returns false</span>
+</span><span class='line'><span class="o">[</span><span class="kp">false</span><span class="o">].</span><span class="n">any?</span> <span class="c1"># returns false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I find it more expressive than <code>!some_array.empty?</code>. This is just a matter of personal taste: feel free to use whichever you want.</p>
+
+<h2>times</h2>
+
+<p>This is a funny one!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s1">&#39;Hello world!&#39;</span> <span class="p">}</span> <span class="c1"># prints &#39;Hello world!&#39; 3 times</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">i</span> <span class="p">}</span> <span class="c1"># prints &#39;0&#39;, &#39;1&#39; and &#39;2&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In practice I don&rsquo;t use it very often though.</p>
+
+<h2>Sorting methods</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="o">].</span><span class="n">sort</span> <span class="c1"># returns [2, 5, 7]</span>
+</span><span class='line'><span class="o">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="o">].</span><span class="n">sort</span> <span class="c1"># returns [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">employees</span><span class="o">.</span><span class="n">sort_by</span> <span class="p">{</span><span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">last_name</span><span class="p">}</span> <span class="c1"># sort your employees by last name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>But&hellip; I want indexes!</h2>
+
+<p>On top of the current element, you also need the current index? Worry not, fellow citizen. Ruby has it all.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="o">].</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># do stuff</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="o">].</span><span class="n">map</span><span class="o">.</span><span class="n">with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># do stuff</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In practice I don&rsquo;t use <code>each_with_index</code> very often. I never had to use <code>map.with_index</code>, but I put it for the sake of being comprehensive.</p>
+
+<h2>Explicit loops</h2>
+
+<p>Collection methods will probably cover 90% of your needs. What is certain is that you won&rsquo;t need to use a <code>for</code> loop ever again.</p>
+
+<p>However, there are cases when the number of iterations in not known in advance: if you work on an algorithm or low-level code,
+for example.
+This is a typical job for <code>while</code> and <code>until</code>. In this case, these explicit loops are ok to use.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">finished</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'><span class="k">until</span> <span class="n">finished</span>
+</span><span class='line'>  <span class="c1"># do stuff</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span class='line'><span class="k">while</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="c1"># do stuff</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You may want to use an infinite loop: for example the main infinite loop of a video game. Here is the syntax:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'> <span class="c1"># do stuff.</span>
+</span><span class='line'> <span class="c1"># You can still exit the loop with break.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Same as <code>while true</code>, but terser.</p>
+
+<h2>Going further</h2>
+
+<p>Ruby collection methods become even more powerful if you combine them:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s1">&#39;coconut&#39;</span><span class="p">,</span> <span class="s1">&#39;lemon&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="o">].</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="p">}</span>
+</span><span class='line'>                                       <span class="o">.</span><span class="n">map</span>    <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
+</span><span class='line'>                                       <span class="o">.</span><span class="n">sort</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># returns [&#39;BANANA&#39;, &#39;COCONUT&#39;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Don&rsquo;t do this to excess though!</p>
+
+<p>This article covers the main collection methods: feel free to dive into the <a href="http://ruby-doc.org/core" target="_blank">Ruby Core documentation</a> for more.<br/>
+Finally, if you are wondering why I avoid aliases such as <em>collect</em> and <em>inject</em>, you can read this community-driven <a href="https://github.com/bbatsov/ruby-style-guide#naming" target="_blank">Ruby style guide</a> and submit a bug if you don&rsquo;t agree. :&ndash;)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jerome Dalbert</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-05T14:12:00+00:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jeromedalbert.com/ruby-how-to-iterate-the-right-way" data-counturl="http://jeromedalbert.com/ruby-how-to-iterate-the-right-way" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/dead-simple-file-handling-in-ruby" title="Previous Post: Dead simple file handling in Ruby">&laquo; Dead simple file handling in Ruby</a>
+      
+      
+        <a class="basic-alignment right" href="/migrate-from-oh-my-zsh-to-prezto" title="Next Post: Migrate from Oh-my-zsh to Prezto">Migrate from Oh-my-zsh to Prezto &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1 class="comments">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  <p>Hi! I'm Jerome Dalbert, I work at <a href="https://www.rentify.com" target="_blank">Rentify</a>, and this is my software development blog. <a href="/about">More...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/migrate-from-oh-my-zsh-to-prezto">Migrate From Oh-my-zsh to Prezto</a>
+      </li>
+    
+      <li class="post">
+        <a href="/ruby-how-to-iterate-the-right-way">Ruby: How to Iterate "the Right Way"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/dead-simple-file-handling-in-ruby">Dead Simple File Handling in Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities">What Traffic Do You Get When Mentioned by Several Ruby Authorities?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/a-diagram-of-the-ruby-core-object-model">A Diagram of the Ruby Core Object Model</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jeromedalbert" target="_blank">@jeromedalbert</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jeromedalbert',
+            count: 3,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<div class="twitter-margin-top"></div>
+<section class="twitter">
+    <a class="twitter-timeline" href="https://twitter.com/Jerome_Dalbert" data-widget-id="383939009119936513" data-chrome="transparent nofooter">Tweets by @Jerome_Dalbert</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section class="stack-overflow">
+  <h1>Stack Overflow</h1>
+  <p>
+    <a class="stack-overflow-link" href="http://stackoverflow.com/users/400545/jerome-dalbert" target="_blank">
+      <img src="http://stackoverflow.com/users/flair/400545.png" width="208" height="58" alt="profile for Jerome Dalbert at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Jerome Dalbert at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+    </a>
+  </p>
+</section>
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108942572017801116744?rel=author">
+      
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeromedevblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jeromedalbert.com/ruby-how-to-iterate-the-right-way';
+        var disqus_url = 'http://jeromedalbert.com/ruby-how-to-iterate-the-right-way';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

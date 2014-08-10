@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migrate from Oh-my-zsh to Prezto - Jerome's Adventures in Software</title>
+  <meta name="author" content="Jerome Dalbert">
+
+  
+  <meta name="description" content="Zsh is an amazing shell, and Oh-my-zsh is very good at showcasing its power without having to dive into too much configuration.
+I recommend it to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/jeromedalbert" rel="alternate" title="Jerome's Adventures in Software" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44431393-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">
+    <div id="logo"><div class="sparkle sparkle1"></div><div class="sparkle sparkle2"></div><div class="sparkle sparkle3"></div><div class="sparkle sparkle4"></div><div class="sparkle sparkle5"></div></div><br/>
+  </a>
+  <h1><a href="/">Jerome's Adventures in Software</a></h1>
+  
+    <h2>An online novel of code and romance</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/jeromedalbert" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jeromedalbert.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About me</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Migrate From Oh-my-zsh to Prezto</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T22:44:00+01:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="header" src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title="Pipe the whole result to the &#34;lolcat&#34; Ruby gem for better effect." alt="Pipe the whole result to the &#34;lolcat&#34; Ruby gem for better effect."></p>
+
+<p>Zsh is an amazing shell, and <a href="https://github.com/robbyrussell/oh-my-zsh" target="blank">Oh-my-zsh</a> is very good at showcasing its power without having to dive into too much configuration.
+I recommend it to Zsh first-timers: within minutes they can enjoy autocompletion on steroids, crazy prompt tweaking, git integration as well as many other plugins.</p>
+
+<p>BUT. It&rsquo;s God. Damn. Slow!<!--more--></p>
+
+<p>Wanna spend the night happily coding and hacking in the &ldquo;zone&rdquo;?
+Here, wait for 1 long second whenever you open up a new terminal window/tab.
+Are you triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
+
+<p>Enter <a href="https://github.com/sorin-ionescu/prezto" target="blank">Prezto</a>, a.k.a the &ldquo;Instantly Awesome Zsh&rdquo;. It began as a fork of Oh-my-zsh, but was later completely rewritten with optimization in mind, and moved to its own repo.</p>
+
+<p>Here&rsquo;s how I migrated in order to have the exact same behavior as before, while still having a fast shell. Yes, I like to have my cake and eat it too.</p>
+
+<h2>Installation</h2>
+
+<p>Very straightforward:</p>
+
+<ul>
+<li>Backup your existing configuration: <code>~/.oh-my-zsh</code>, <code>~/.zshrc</code> and your possible other dotfiles</li>
+<li>Uninstall Oh-my-zsh by running <code>uninstall_oh_my_zsh</code></li>
+<li>Install Prezto by following the quick instructions on the <a href="https://github.com/sorin-ionescu/prezto" target="blank">github repo</a></li>
+</ul>
+
+
+<p>Done. You now have a bunch of symlinked <code>.z&lt;something&gt;</code> dotfiles in your home folder.</p>
+
+<h2>Fiddling with the dotfiles</h2>
+
+<ul>
+<li>If it annoys you, remove the possible example instructions in <code>~/.zlogin</code> and <code>~/.zlogout</code> (such as displaying a fortune every time you login)</li>
+<li>Put back all your aliases and other customizations into <code>~/.zshrc</code>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/.zprezto/init.zsh
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">SUBLIME</span><span class="o">=</span>subl
+</span><span class='line'><span class="nb">export </span><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&quot;$SUBLIME --wait&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">VISUAL</span><span class="o">=</span><span class="nv">$EDITOR</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span><span class="s2">&quot;exfxcxdxbxegedabagacad&quot;</span>
+</span><span class='line'>...
+</span><span class='line'>
+</span><span class='line'><span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s2">&quot;ls -lh&quot;</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">la</span><span class="o">=</span><span class="s2">&quot;ls -A&quot;</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">gl</span><span class="o">=</span><span class="s2">&quot;git pull --rebase&quot;</span>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>If you like to organize your exports/aliases/etc into separate files, have a look at the other dotfiles. I personally don&rsquo;t do that and just have one massive <code>~/.zshrc</code>.</li>
+</ul>
+
+
+<h2>Customizing the prompt</h2>
+
+<p>Now to the fun part!<br/>
+Zprezto contains half a dozen example themes compared to the 140 (!) ones of Oh-my-zsh. If you had a custom prompt like me, you will need to tinker a bit.</p>
+
+<p>My theme is quite minimalist: just display the current path followed by <code>$</code> and a space.
+When in a Git repo, I like to display the branch name followed by a dirty/clean indicator like so:</p>
+
+<p><img src="https://farm6.staticflickr.com/5562/14685304517_58427bb488_o.png" title="Dirty vs Clean" ></p>
+
+<p>At the time of writing, Prezto uses <code>vcs_info</code> which can detect staged and unstaged changes (i.e. a dirty state).
+But there&rsquo;s no hook for a clean state, so when there are no changes, the prompt will just display nothing.
+I would much rather have a satisfying green little tick that means &ldquo;Nothing else to do! Well done mate, you can have a beer* now&rdquo;.</p>
+
+<p>For this, we need to use <code>git-info</code> from the Prezto <code>git</code> plugin. I ended up with this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">function </span>prompt_jerome_precmd <span class="o">{</span>
+</span><span class='line'>  git-info
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function </span>prompt_jerome_setup <span class="o">{</span>
+</span><span class='line'>  setopt LOCAL_OPTIONS
+</span><span class='line'>  unsetopt XTRACE KSH_ARRAYS
+</span><span class='line'>  <span class="nv">prompt_opts</span><span class="o">=(</span>cr percent subst<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># Load required functions.</span>
+</span><span class='line'>  autoload -Uz add-zsh-hook
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># Add hook for calling git-info before each command.</span>
+</span><span class='line'>  add-zsh-hook precmd prompt_jerome_precmd
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># Set git-info parameters.</span>
+</span><span class='line'>  zstyle <span class="s1">&#39;:prezto:module:git:info&#39;</span> verbose <span class="s1">&#39;yes&#39;</span>
+</span><span class='line'>  zstyle <span class="s1">&#39;:prezto:module:git:info:branch&#39;</span> format <span class="s1">&#39;%F{green}%b%f&#39;</span>
+</span><span class='line'>  zstyle <span class="s1">&#39;:prezto:module:git:info:clean&#39;</span> format <span class="s1">&#39; %F{green}✔%f&#39;</span>
+</span><span class='line'>  zstyle <span class="s1">&#39;:prezto:module:git:info:dirty&#39;</span> format <span class="s1">&#39; %F{red}✗%f&#39;</span>
+</span><span class='line'>  zstyle <span class="s1">&#39;:prezto:module:git:info:keys&#39;</span> format <span class="se">\</span>
+</span><span class='line'>    <span class="s1">&#39;prompt&#39;</span> <span class="s1">&#39; %F{green}(%f$(coalesce &quot;%b&quot; &quot;%p&quot; &quot;%c&quot;)${git_info[rprompt]}%s%F{green})%f&#39;</span> <span class="se">\</span>
+</span><span class='line'>    <span class="s1">&#39;rprompt&#39;</span> <span class="s1">&#39;%C%D&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># Define prompts.</span>
+</span><span class='line'>  <span class="nv">PROMPT</span><span class="o">=</span><span class="s1">&#39;%~${(e)git_info[prompt]}$ &#39;</span>
+</span><span class='line'>  <span class="nv">RPROMPT</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>prompt_jerome_setup <span class="s2">&quot;$@&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I then saved the theme in <code>~/.zprezto/modules/prompt/functions/prompt_jerome_setup</code>
+and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>zstyle <span class="s1">&#39;:prezto:module:prompt&#39;</span> theme <span class="s1">&#39;jerome&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done.</p>
+
+<h2>Last bits and pieces</h2>
+
+<ul>
+<li>I added <code>history-substring-search</code> and <code>git</code> to the <code>~/.zpreztorc</code> plugin list:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>...
+</span><span class='line'>zstyle <span class="s1">&#39;:prezto:load&#39;</span> pmodule <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;environment&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;terminal&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;editor&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;history&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;directory&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;spectrum&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;utility&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;completion&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;prompt&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;history-substring-search&#39;</span> <span class="se">\</span>
+</span><span class='line'>  <span class="s1">&#39;git&#39;</span>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>history-substring-search</code>: when pressing up/down arrows, completes the beginning of a command by searching in the history.<br/>
+<code>git</code>: adds useful aliases and functions like the <code>git-info</code> one that we discussed above.</p>
+
+<ul>
+<li>When pressing tab to complete a command, I didn&rsquo;t like the catogory menus, so I commented these lines out in <code>~.zprezto/modules/completion/init.zsh</code>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>...
+</span><span class='line'><span class="c"># Group matches and describe.</span>
+</span><span class='line'>zstyle <span class="s1">&#39;:completion:*:*:*:*:*&#39;</span> menu <span class="k">select</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:matches&#39; group &#39;yes&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:options&#39; description &#39;yes&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:options&#39; auto-description &#39;%d&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:corrections&#39; format &#39; %F{green}-- %d (errors: %e) --%f&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:descriptions&#39; format &#39; %F{yellow}-- %d --%f&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:messages&#39; format &#39; %F{purple} -- %d --%f&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:warnings&#39; format &#39; %F{red}-- no matches found --%f&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*:default&#39; list-prompt &#39;%S%M matches%s&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*&#39; format &#39; %F{yellow}-- %d --%f&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*&#39; group-name &#39;&#39;</span>
+</span><span class='line'><span class="c"># zstyle &#39;:completion:*&#39; verbose yes</span>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I also modified this line in order to have red diretories when autocompleting <code>cd</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Directories</span>
+</span><span class='line'>zstyle <span class="s1">&#39;:completion:*:default&#39;</span> list-colors <span class="s1">&#39;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>In my <code>~/.zshrc</code>, I added these zsh options:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>unsetopt CORRECT                      <span class="c"># Disable autocorrect guesses. Happens when typing a wrong</span>
+</span><span class='line'>                                      <span class="c"># command that may look like an existing one.</span>
+</span><span class='line'>
+</span><span class='line'>expand-or-complete-with-dots<span class="o">()</span> <span class="o">{</span>      <span class="c"># This bunch of code displays red dots when autocompleting</span>
+</span><span class='line'>  <span class="nb">echo</span> -n <span class="s2">&quot;\e[31m......\e[0m&quot;</span>         <span class="c"># a command with the tab key, &quot;Oh-my-zsh&quot;-style.</span>
+</span><span class='line'>  zle expand-or-complete
+</span><span class='line'>  zle redisplay
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>zle -N expand-or-complete-with-dots
+</span><span class='line'>bindkey <span class="s2">&quot;^I&quot;</span> expand-or-complete-with-dots
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Wrapping up</h2>
+
+<p>That&rsquo;s it, you now have a fast zsh that behaves like before!</p>
+
+<p>I skipped some very minor configurations in this article, so if you want to review exactly what I&rsquo;ve done (or if you want to know what kind of crazy stuff I put in my <code>~/.zshrc</code>),
+have a look at the commits in my <a href="https://github.com/jeromedalbert/prezto/commits/master" target="blank">Prezto fork</a>.</p>
+
+<p>Enjoy!</p>
+
+<div class="references">
+*I prefer cider.
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jerome Dalbert</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T22:44:00+01:00" pubdate data-updated="true">May 6<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto" data-counturl="http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/ruby-how-to-iterate-the-right-way" title="Previous Post: Ruby: How to iterate "the right way"">&laquo; Ruby: How to iterate "the right way"</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1 class="comments">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  <p>Hi! I'm Jerome Dalbert, I work at <a href="https://www.rentify.com" target="_blank">Rentify</a>, and this is my software development blog. <a href="/about">More...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/migrate-from-oh-my-zsh-to-prezto">Migrate From Oh-my-zsh to Prezto</a>
+      </li>
+    
+      <li class="post">
+        <a href="/ruby-how-to-iterate-the-right-way">Ruby: How to Iterate "the Right Way"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/dead-simple-file-handling-in-ruby">Dead Simple File Handling in Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities">What Traffic Do You Get When Mentioned by Several Ruby Authorities?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/a-diagram-of-the-ruby-core-object-model">A Diagram of the Ruby Core Object Model</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jeromedalbert" target="_blank">@jeromedalbert</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jeromedalbert',
+            count: 3,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<div class="twitter-margin-top"></div>
+<section class="twitter">
+    <a class="twitter-timeline" href="https://twitter.com/Jerome_Dalbert" data-widget-id="383939009119936513" data-chrome="transparent nofooter">Tweets by @Jerome_Dalbert</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section class="stack-overflow">
+  <h1>Stack Overflow</h1>
+  <p>
+    <a class="stack-overflow-link" href="http://stackoverflow.com/users/400545/jerome-dalbert" target="_blank">
+      <img src="http://stackoverflow.com/users/flair/400545.png" width="208" height="58" alt="profile for Jerome Dalbert at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Jerome Dalbert at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+    </a>
+  </p>
+</section>
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108942572017801116744?rel=author">
+      
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeromedevblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto';
+        var disqus_url = 'http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

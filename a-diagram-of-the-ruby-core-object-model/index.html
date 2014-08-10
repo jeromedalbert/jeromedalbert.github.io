@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A diagram of the Ruby Core object model - Jerome's Adventures in Software</title>
+  <meta name="author" content="Jerome Dalbert">
+
+  
+  <meta name="description" content="I am a visual learner. A picture is worth a thousand words. When I started learning Ruby, I could not find a decent diagram that would just sum up &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/jeromedalbert" rel="alternate" title="Jerome's Adventures in Software" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44431393-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">
+    <div id="logo"><div class="sparkle sparkle1"></div><div class="sparkle sparkle2"></div><div class="sparkle sparkle3"></div><div class="sparkle sparkle4"></div><div class="sparkle sparkle5"></div></div><br/>
+  </a>
+  <h1><a href="/">Jerome's Adventures in Software</a></h1>
+  
+    <h2>An online novel of code and romance</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/jeromedalbert" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jeromedalbert.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About me</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Diagram of the Ruby Core Object Model</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-05T20:26:00+01:00" pubdate data-updated="true">Oct 5<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="header noarticle" src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg" title="Yep, this is a diagram. What an acute sense of observation. I'm proud of you." ></p>
+
+<p>I am a visual learner. A picture is worth a thousand words.</p>
+
+<p>When I started learning Ruby, I could not find a decent diagram that would just sum up the Ruby classes, modules, and their hierarchy.</p>
+
+<p>So I made mine.<!--more--><br/>
+By hand.<br/>
+On an A4 sheet.</p>
+
+<p>Here is the result (click for a full size view):</p>
+
+<p><a href="http://farm6.staticflickr.com/5443/10075536704_84aa13676a_o.jpg" target="_blank"><img src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_b.jpg"></img></a></p>
+
+<p>Most of Ruby&rsquo;s guts at one glance: pretty neat, huh ?</p>
+
+<ul>
+<li>Modules are on the top left.</li>
+<li>The usual types are here: strings, arrays, hashes, numbers, &ldquo;booleans&rdquo; (actually <code>TrueClass</code> and <code>FalseClass</code>).</li>
+<li>The error hierarchy is on the right.</li>
+<li>Other classes are in the middle.</li>
+</ul>
+
+
+<p>Note: To have a decent layout, I only drew 70% of the <a href="http://ruby-doc.org/core-2.0" target="_blank">Ruby 2 Core classes</a>. All of the important ones are there, except <code>Random</code>, <code>Time</code>, <code>GC</code> and <code>ObjectSpace</code>: when I noticed, it was too late. :&ndash;)</p>
+
+<h2>What can we &ldquo;draw&rdquo; from this ?</h2>
+
+<p>Well, this model is pretty much what we would have expected:</p>
+
+<ul>
+<li>Arrays are enumerable, numbers are comparable.</li>
+<li>&ldquo;Everything is an object&rdquo;, or more precisely, every box is this diagram is a BasicObject.</li>
+<li>Object includes the Kernel module, so Object has all the instance methods of Kernel, like <code>puts</code>, <code>gets</code>, <code>exit</code>.<br/>
+When you write Ruby code, you are inside a <code>main</code> object, that&rsquo;s why you can just write <code>puts 'Hello world'</code> instead of <code>Kernel.puts 'Hello world'</code>.</li>
+</ul>
+
+
+<p>So, everything makes sense and is quite simple actually !<br/>
+Except maybe the fact that a module is a class, and class inherits from module. Don&rsquo;t worry, you will eventually wrap your head around it.</p>
+
+<h2>Going further</h2>
+
+<p>In addition to Ruby Core, the <a href="http://www.ruby-doc.org/stdlib-2.0.0/" target="_blank">Ruby Standard Library</a> contains many other very useful classes and modules, such as <code>Date</code>, <code>Forwardable</code>, <code>SimpleDelegator</code>, <code>Net::HTTP</code>, <code>OpenStruct</code>, etc.</p>
+
+<p>This diagram does not explain the Ruby method lookup path, which takes eigenclasses, included modules and superclasses into account. I recommend reading this <a href="https://github.com/elm-city-craftworks/practicing-ruby-manuscripts/blob/master/articles/v1/001-method-lookup.md" target="_blank">enlightening article</a> from Practicing Ruby.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jerome Dalbert</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-05T20:26:00+01:00" pubdate data-updated="true">Oct 5<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model" data-counturl="http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/first-post" title="Previous Post: First post">&laquo; First post</a>
+      
+      
+        <a class="basic-alignment right" href="/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities" title="Next Post: What traffic do you get when mentioned by several Ruby authorities?">What traffic do you get when mentioned by several Ruby authorities? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1 class="comments">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  <p>Hi! I'm Jerome Dalbert, I work at <a href="https://www.rentify.com" target="_blank">Rentify</a>, and this is my software development blog. <a href="/about">More...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/migrate-from-oh-my-zsh-to-prezto">Migrate From Oh-my-zsh to Prezto</a>
+      </li>
+    
+      <li class="post">
+        <a href="/ruby-how-to-iterate-the-right-way">Ruby: How to Iterate "the Right Way"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/dead-simple-file-handling-in-ruby">Dead Simple File Handling in Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities">What Traffic Do You Get When Mentioned by Several Ruby Authorities?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/a-diagram-of-the-ruby-core-object-model">A Diagram of the Ruby Core Object Model</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jeromedalbert" target="_blank">@jeromedalbert</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jeromedalbert',
+            count: 3,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<div class="twitter-margin-top"></div>
+<section class="twitter">
+    <a class="twitter-timeline" href="https://twitter.com/Jerome_Dalbert" data-widget-id="383939009119936513" data-chrome="transparent nofooter">Tweets by @Jerome_Dalbert</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section class="stack-overflow">
+  <h1>Stack Overflow</h1>
+  <p>
+    <a class="stack-overflow-link" href="http://stackoverflow.com/users/400545/jerome-dalbert" target="_blank">
+      <img src="http://stackoverflow.com/users/flair/400545.png" width="208" height="58" alt="profile for Jerome Dalbert at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Jerome Dalbert at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+    </a>
+  </p>
+</section>
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108942572017801116744?rel=author">
+      
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeromedevblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model';
+        var disqus_url = 'http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
