@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-08-10T03:51:41+01:00</updated>
+  <updated>2014-08-10T03:59:17+01:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -254,7 +254,7 @@ and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I also modified this line in order to have red diretories when autocompleting <code>cd</code>:</p>
+<p>I also modified this line in order to have red diretories when autocompleting the <code>cd</code> command:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
