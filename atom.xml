@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-08-10T06:15:32+01:00</updated>
+  <updated>2014-08-10T06:29:21+01:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -89,7 +89,7 @@ Are you triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
 <h2>Customizing the prompt</h2>
 
 <p>Now to the fun part!<br/>
-Zprezto contains half a dozen example themes compared to the 140 (!) ones of Oh-my-zsh. If you had a custom prompt like me, you will need to tinker a bit.</p>
+Zprezto contains half a dozen example themes compared to the 140 (!) ones of Oh-my-zsh. If you have a custom prompt like me, you will need to tinker a bit.</p>
 
 <p>My theme is quite minimalist: just display the current path followed by <code>$</code> and a space.
 When in a Git repo, I like to display the branch name followed by a dirty/clean indicator like so:</p>
