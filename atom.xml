@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-08-31T23:43:47+01:00</updated>
+  <updated>2014-09-01T00:19:13+01:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -670,6 +670,8 @@ Just for the sake of being comprehensive, here are the other 20%*, slightly more
     <id>http://jeromedalbert.com/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities</id>
     <content type="html"><![CDATA[<p><img class="header noarticle" src="http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg" title="Jam. Yummy." ></p>
 
+<p><span class="article-only"><em>EDIT: some of my latest articles have had traffic orders of magnitude larger than the one mentioned below, making the figures completely obsolete.</em></span></p>
+
 <p>It looks like my latest blog post, <a href="http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model">A Diagram of the Ruby Core Object Model</a>, has had quite a bit of a success in the Ruby community.
 Mostly in the educational sphere, that is, <!--more-->Ruby beginners (the targeted audience) but also&hellip; trainers!<br/>
 Well, as long as you guys cite your sources, it&rsquo;s fine by me!</p>
@@ -677,13 +679,10 @@ Well, as long as you guys cite your sources, it&rsquo;s fine by me!</p>
 <p>It casually begins with a decent score on Reddit:<br/>
 <img src="http://farm4.staticflickr.com/3737/10778987893_4d056d9a9b.jpg" title="Reddit is not only about lolcats and rage comics." ></p>
 
-<p>And then, the unexpected happens: I get retweeted by Matz, the creator of Ruby! I can die in peace now. Minaswan.
+<p>Then, the unexpected happens: I get retweeted by Matz, the creator of Ruby! I can die in peace now. Minaswan.
 <img src="http://farm8.staticflickr.com/7433/10778840974_4a80fee452.jpg" title="A retweet from god." ></p>
 
-<p>So I decide to try my luck on <a href="https://news.ycombinator.com" target="_blank">Hacker news</a> but&hellip; Not a single vote was given that day. I realize
-this website is more about general life and startup posts, important technology announcements, and provocative rants.</p>
-
-<p>Finally, two weeks later, my post <a href="http://rubyweekly.com/archive/167.html" target="_blank">gets mentioned</a> in the revered Ruby Weekly newsletter! Definitely a lot of traffic coming from there.</p>
+<p>Finally, two weeks later, my post <a href="http://rubyweekly.com/archive/167.html" target="_blank">gets mentioned</a> in the famous Ruby Weekly newsletter! Definitely a lot of traffic coming from there.</p>
 
 <p>In terms of metrics, in two weeks, I had 5000 hits, 70 related tweets, and a couple of new followers and e-mail messages.<br/>
 <img src="http://farm6.staticflickr.com/5477/10781634074_0c64336424_c.jpg" title="Show me the money!" ></p>
