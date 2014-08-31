@@ -86,6 +86,13 @@ article.hentry img.header.noarticle {
   display: none;
 }
 
+article .article-only {
+  display: none;
+}
+article.hentry .article-only {
+  display: block;
+}
+
 article {
   font-family: $article-font;
   font-size: 16px;
