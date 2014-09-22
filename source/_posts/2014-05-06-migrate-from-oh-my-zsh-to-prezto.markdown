@@ -181,6 +181,8 @@ have a look at the commits in my <a href="https://github.com/jeromedalbert/prezt
 
 Enjoy!
 
+*EDIT: <a href="https://news.ycombinator.com/item?id=8158707" target="blank">Hacker News thread</a>*
+
 <div class="references">
 *I prefer cider.
 </div>
