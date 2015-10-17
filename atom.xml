@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2014-10-30T13:54:36+00:00</updated>
+  <updated>2015-10-17T16:36:26-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Migrate from Oh-my-zsh to Prezto]]></title>
     <link href="http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto"/>
-    <updated>2014-05-06T22:44:00+01:00</updated>
+    <updated>2014-05-06T22:44:00-07:00</updated>
     <id>http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto</id>
     <content type="html"><![CDATA[<p><img class="header" src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title="Pipe the whole result to the &#34;lolcat&#34; Ruby gem for better effect." alt="Pipe the whole result to the &#34;lolcat&#34; Ruby gem for better effect."></p>
 
@@ -312,7 +312,7 @@ have a look at the commits in my <a href="https://github.com/jeromedalbert/prezt
   <entry>
     <title type="html"><![CDATA[Ruby: How to iterate "the right way"]]></title>
     <link href="http://jeromedalbert.com/ruby-how-to-iterate-the-right-way"/>
-    <updated>2014-01-05T14:12:00+00:00</updated>
+    <updated>2014-01-05T14:12:00-08:00</updated>
     <id>http://jeromedalbert.com/ruby-how-to-iterate-the-right-way</id>
     <content type="html"><![CDATA[<p><img class="header" src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title="Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here." ></p>
 
@@ -593,7 +593,7 @@ Finally, if you are wondering why I avoid aliases such as <em>collect</em> and <
   <entry>
     <title type="html"><![CDATA[Dead simple file handling in Ruby]]></title>
     <link href="http://jeromedalbert.com/dead-simple-file-handling-in-ruby"/>
-    <updated>2013-11-10T18:52:00+00:00</updated>
+    <updated>2013-11-10T18:52:00-08:00</updated>
     <id>http://jeromedalbert.com/dead-simple-file-handling-in-ruby</id>
     <content type="html"><![CDATA[<p><img class="margintop header" src="http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg" title="The first hipsters. These guys developed the C programming language." ></p>
 
@@ -668,7 +668,7 @@ Just for the sake of being comprehensive, here are the other 20%*, slightly more
   <entry>
     <title type="html"><![CDATA[What traffic do you get when mentioned by several Ruby authorities?]]></title>
     <link href="http://jeromedalbert.com/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities"/>
-    <updated>2013-11-10T16:50:00+00:00</updated>
+    <updated>2013-11-10T16:50:00-08:00</updated>
     <id>http://jeromedalbert.com/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities</id>
     <content type="html"><![CDATA[<p><img class="header noarticle" src="http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg" title="Jam. Yummy." ></p>
 
@@ -696,7 +696,7 @@ Well, as long as you guys cite your sources, it&rsquo;s fine by me!</p>
   <entry>
     <title type="html"><![CDATA[A diagram of the Ruby Core object model]]></title>
     <link href="http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model"/>
-    <updated>2013-10-05T20:26:00+01:00</updated>
+    <updated>2013-10-05T20:26:00-07:00</updated>
     <id>http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model</id>
     <content type="html"><![CDATA[<p><img class="header noarticle" src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg" title="Yep, this is a diagram. What an acute sense of observation. I'm proud of you." ></p>
 
@@ -750,7 +750,7 @@ Except maybe the fact that a module is a class, and class inherits from module. 
   <entry>
     <title type="html"><![CDATA[First post]]></title>
     <link href="http://jeromedalbert.com/first-post"/>
-    <updated>2013-10-02T20:53:00+01:00</updated>
+    <updated>2013-10-02T20:53:00-07:00</updated>
     <id>http://jeromedalbert.com/first-post</id>
     <content type="html"><![CDATA[<p><img class="header" src="http://farm4.staticflickr.com/3684/11411728145_48e776258e_m.jpg" title="First!" /></p>
 
