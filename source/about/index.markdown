@@ -8,14 +8,20 @@ footer: true
 
 {% img left personal-photo /images/pages/jerome.jpg Probably me. %}
 
-My name is Jerome Dalbert. I'm originally from Bordeaux, France, but recently I have moved a bit.
+My name is Jerome Dalbert. I'm originally from Bordeaux, France, but I have
+moved quite a bit.
 
-I studied computer engineering in Toulouse (where _Airbus_ planes are designed and assembled) and began my professional career in Paris.
-Now, I'm a Frenchman in London!
+After studying computer engineering in Toulouse (where _Airbus_ planes are
+designed and assembled), I worked on websites and booking/retail systems as a
+Java/JEE engineer for "big bad corporations" in Paris. Nobody's perfect!
 
-I am currently a software engineer at <a href="https://www.rentify.com" target="_blank">Rentify</a> where I develop various Ruby and Ruby on Rails applications.
-Before that, I worked on websites and booking/retail systems as a Java engineer (Spring, JEE, etc). Nobody's perfect !
-Joking aside, I enjoy developing in Ruby: it is fun, terse, leverages powerful paradigms, and the community really cares about software craftsmanship.
+After a while I moved to London to work for an exciting small startup. It was
+also my first significant Ruby experience and I really enjoyed it: this language
+is simple, expressive, and you can code very quickly thanks to frameworks like
+Rails.
+
+Now I work in San Francisco for a startup called <a href="http://vicinitycommerce.com" target="_blank">Vicinity Commerce</a>,
+where I develop various Ruby and Ruby on Rails applications. Who knows what will happen next?
 
 <div class="clear"></div>
 <br/>
