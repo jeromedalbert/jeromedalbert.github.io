@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2015-10-17T21:05:40-07:00</updated>
+  <updated>2015-10-17T21:53:03-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -111,7 +111,7 @@ loads YAML file values depending on the environment. By combining those two feat
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You can see that I wrap the loaded configuration in a <a href="https://github.com/intridea/hashie" target="blank">hashie</a> <code>Hashie::Mash</code> object.
+<p>You can see that I wrap the loaded configuration in a <a href="https://github.com/intridea/hashie" target="blank">hashie</a> <code>Mash</code> object.
 You don&rsquo;t have to, I just use it for convenience so that I can access configuration variables with dots rather than brackets.
 If you want to use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code>.</p>
 
