@@ -99,8 +99,9 @@
 Dummy environment values are stored in my project <a href="https://github.com/bkeepers/dotenv" target="blank">dotenv</a> file
 and production values are deployed to the PaaS server of my choice with a simple <code>heroku config:set</code> / <code>eb setenv</code> / etc.</p>
 
-<p>But what about non-sensitive configuration values such as emails or your company address?<!--more-->
-Storing them in environment variables both in your project and in your server is overkill and
+<p>But what about non-sensitive configuration values such as emails or your company address?<!--more--></p>
+
+<p>Storing them in environment variables both in your project and in your server is overkill and
 not really compliant with <a href="http://12factor.net/config" target="blank">12 factor apps</a>.
 Those values are best stored in your project source code, in some sort of configuration file.</p>
 
