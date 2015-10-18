@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2015-10-17T16:39:24-07:00</updated>
+  <updated>2015-10-17T20:34:56-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -12,6 +12,131 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Leveraging Rails' custom configuration]]></title>
+    <link href="http://jeromedalbert.com/leveraging-rails-custom-configuration"/>
+    <updated>2015-10-17T16:52:00-07:00</updated>
+    <id>http://jeromedalbert.com/leveraging-rails-custom-configuration</id>
+    <content type="html"><![CDATA[<p><img class="header" src="https://c2.staticflickr.com/6/5641/22236919056_b4cd72cd09_m.jpg" title="Pimp my Rails" ></p>
+
+<p>These days, I use environment variables for credentials and other sensitive data (<code>secrets.yml</code> could do the job but is too boilerplate-y for my taste).
+Dummy environment values are stored in my project <a href="https://github.com/bkeepers/dotenv" target="blank">dotenv</a> file
+and production values are deployed to the PaaS server of my choice with a simple <code>heroku config:set</code> / <code>eb setenv</code> / etc.</p>
+
+<p>But what about non-sensitive configuration values such as emails or your company address?<!--more-->
+Storing them in environment variables both in your project and in your server is overkill and
+not really compliant with <a href="http://12factor.net/config" target="blank">12 factor apps</a>.
+Those values are best stored in your project, in some sort of configuration file.</p>
+
+<p>Rails 4.2 introduced a <a href="http://guides.rubyonrails.org/configuring.html#custom-configuration" target="blank">custom configuration object</a>
+that can be accessed with <code>Rails.configuration.x</code>, and
+<a href="http://guides.rubyonrails.org/configuring.html#custom-configuration" target="blank">Rails.application.config_for</a>
+loads YAML file values depending on the environment. By combining those two features, you can have all your custom configuration in a handy all-in-one YAML file!</p>
+
+<p>Say your project is called MyApp:</p>
+
+<ul>
+<li>Create a <code>my_app.yml</code> file in the <code>config</code> directory. It would look something like this:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># MyApp custom configuration.</span>
+</span><span class='line'><span class="c1"># Do not put sensitive data in this file (use environment variables instead).</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="nl">&amp;default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">emails</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">support</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">support@my-app.com</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">marketing</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">marketing@my-app.com</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">company_address</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">221B Baker Street</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">emails</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">support</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">support+dev@my-app.com</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Add this line in your <code>config/application.rb</code> file:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">MyApp</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="ss">Rails</span><span class="p">:</span><span class="ss">:Application</span>
+</span><span class='line'>    <span class="c1"># ...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Custom configuration</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="ss">Hashie</span><span class="p">:</span><span class="ss">:Mash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">config_for</span><span class="p">(</span><span class="ss">:my_app</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can see that I wrap the loaded configuration in a <a href="https://github.com/intridea/hashie" target="blank">hashie</a> <code>Hashie::Mash</code> object.
+You don&rsquo;t have to, I just use it for convenience so that I can access configuration variables with dots rather than brackets.
+If you want to use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code>.</p>
+
+<ul>
+<li>You can now access your configuration variables anywhere in your app like so:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">company_address</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>If you did not want to use hashie, you would do:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">x</span><span class="o">[</span><span class="s1">&#39;company_address&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I hope that in future releases, Rails will improve its secret and configuration handling so that they can be even easier to use out of the box.
+But for now, this will do!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Migrate from Oh-my-zsh to Prezto]]></title>
