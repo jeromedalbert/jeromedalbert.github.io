@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2015-10-17T20:35:12-07:00</updated>
+  <updated>2015-10-17T20:37:26-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -27,7 +27,7 @@ and production values are deployed to the PaaS server of my choice with a simple
 <p>But what about non-sensitive configuration values such as emails or your company address?<!--more-->
 Storing them in environment variables both in your project and in your server is overkill and
 not really compliant with <a href="http://12factor.net/config" target="blank">12 factor apps</a>.
-Those values are best stored in your project, in some sort of configuration file.</p>
+Those values are best stored in your project source code, in some sort of configuration file.</p>
 
 <p>Rails 4.2 introduced a <a href="http://guides.rubyonrails.org/configuring.html#custom-configuration" target="blank">custom configuration object</a>
 that can be accessed with <code>Rails.configuration.x</code>, and
