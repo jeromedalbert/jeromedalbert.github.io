@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2015-10-17T21:53:03-07:00</updated>
+  <updated>2015-10-18T17:04:47-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -111,9 +111,9 @@ loads YAML file values depending on the environment. By combining those two feat
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You can see that I wrap the loaded configuration in a <a href="https://github.com/intridea/hashie" target="blank">hashie</a> <code>Mash</code> object.
-You don&rsquo;t have to, I just use it for convenience so that I can access configuration variables with dots rather than brackets.
-If you want to use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code>.</p>
+<p>You can see that I wrap the loaded configuration hash in a <a href="https://github.com/intridea/hashie#mash" target="blank">hashie Mash</a> object.
+I just use it for convenience so that I can access configuration variables with dots rather than brackets (it&rsquo;s like <code>OpenStruct</code> with nested hash support).
+To use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code>.</p>
 
 <ul>
 <li>You can now access your configuration variables anywhere in your app like so:</li>
@@ -121,18 +121,11 @@ If you want to use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">company_address</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">emails</span><span class="o">.</span><span class="n">support</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
-
-<p>If you did not want to use hashie, you would do:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Rails</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">x</span><span class="o">[</span><span class="s1">&#39;company_address&#39;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
 
 <p>I hope that in future releases, Rails will improve its secret and configuration handling so that they can be even easier to use out of the box.
 But for now, this will do!</p>
