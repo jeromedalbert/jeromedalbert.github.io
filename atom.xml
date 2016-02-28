@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-02-28T11:49:19-08:00</updated>
+  <updated>2016-02-28T12:00:44-08:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -199,7 +199,7 @@ If you RTFM&#8217;ed, it has probably crossed your mind at least once that addin
 <h3>It makes you think in terms of REST</h3>
 
 <p>A lot of people like REST because it is uniform and simple.
-Once you understand a (truly) RESTful API, it is easier to understand another one. In theory at least: authentication anyone? ;&ndash;). The business logic obviously differs between applications so you have to understand it, but how you consume that logic is the same: you <a href="https://stripe.com/docs/api#create_charge" target="_blank">create a charge</a> in Stripe, you <a href="https://www.twilio.com/docs/api/rest/message" target="_blank">create a SMS</a> in Twilio (i.e. you send it), you <a href="https://developer.github.com/v3/repos/#get" target="_blank">get a repository</a> in Github, etc.</p>
+Once you understand a (truly) RESTful API, it is easier to understand another one. In theory at least: authentication anyone? ;&ndash;). The business logic obviously differs between applications so you have to understand it, but how you consume that logic is the same: you <a href="https://stripe.com/docs/api#create_charge" target="_blank">create a charge</a> in Stripe (i.e. you take someone&rsquo;s money), you <a href="https://www.twilio.com/docs/api/rest/message" target="_blank">create an SMS</a> in Twilio (i.e. you send it), you <a href="https://developer.github.com/v3/repos/#get" target="_blank">get a repository</a> in Github, etc.</p>
 
 <p>You have to bend your mind a little at first to use REST nouns instead of actions: you don&rsquo;t &ldquo;pay&rdquo;, you &ldquo;create a payment&rdquo;. You don&rsquo;t &ldquo;add funds to your balance&rdquo; you &ldquo;create a fund in a balance&rdquo;. Et cetera.
 Maybe a bit weird at first, but I would pay this small price any day of the week rather than going back to SOAP, WSDL and all that jazz (ex-Java/JEE developers will know what I&rsquo;m talking about).</p>
