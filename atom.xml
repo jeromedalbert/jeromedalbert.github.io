@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-02-28T12:10:26-08:00</updated>
+  <updated>2016-02-28T13:59:37-08:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -251,6 +251,8 @@ At some point some logic needs to be shared by several controllers. Sometimes ev
 This is where concerns, model methods, and even — may God forgive me — service objects come into play (luckily service objects should be rare if you are careful).</p>
 
 <p>The more your app grows, the more time you will need to spend to understand it, no matter how clean the code is. But splitting your controllers makes things easier.</p>
+
+<p><em>EDIT: <a href="https://www.reddit.com/r/ruby/comments/4817pd/how_dhh_organizes_his_rails_controllers" target="_blank">Reddit comment thread</a></em></p>
 ]]></content>
   </entry>
   
