@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-02-28T02:01:02-08:00</updated>
+  <updated>2016-02-28T02:16:56-08:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -20,7 +20,7 @@
     <id>http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers</id>
     <content type="html"><![CDATA[<p><img class="header" src="https://c2.staticflickr.com/2/1491/24693945943_9d42fc3a3a_o.png" title="Wow. Such RESTful. Very web. Amaze." ></p>
 
-<p>In a recent <a href="http://www.fullstackradio.com/32" target="_blank">interview</a>
+<p>In a recent <a href="http://www.fullstackradio.com/32" target="_blank">interview with Full Stack Radio</a>
 our Lord and Savior DHH™ explains how he organizes Rails controllers in the latest version of <a href="https://basecamp.com" target="_blank">Basecamp</a>. Here is an enhanced transcript of his holy words:</p>
 
 <blockquote class="preview-only">
