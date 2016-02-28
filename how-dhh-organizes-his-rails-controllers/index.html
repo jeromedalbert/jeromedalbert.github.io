@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How DHH organizes his Rails controllers - Jerome's Adventures in Software</title>
+  <meta name="author" content="Jerome Dalbert">
+
+  
+  <meta name="description" content="In a recent interview
+our Lord and Savior DHH™ explains how he organizes Rails controllers in the latest version of Basecamp. Here is an enhanced &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/jeromedalbert" rel="alternate" title="Jerome's Adventures in Software" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/blog.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44431393-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">
+    <div id="logo"><div class="sparkle sparkle1"></div><div class="sparkle sparkle2"></div><div class="sparkle sparkle3"></div><div class="sparkle sparkle4"></div><div class="sparkle sparkle5"></div></div><br/>
+  </a>
+  <h1><a href="/">Jerome's Adventures in Software</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How DHH Organizes His Rails Controllers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-28T00:42:00-08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2016</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="header" src="https://c2.staticflickr.com/2/1491/24693945943_9d42fc3a3a_o.png" title="Wow. Such RESTful. Very web. Amaze." ></p>
+
+<p>In a recent <a href="http://www.fullstackradio.com/32" target="_blank">interview</a>
+our Lord and Savior DHH™ explains how he organizes Rails controllers in the latest version of <a href="https://basecamp.com" target="_blank">Basecamp</a>. Here is an enhanced transcript of his holy words:</p>
+
+<blockquote class="preview-only">
+What I&#8217;ve come to embrace is that being almost fundamentalistic about when I create a new controller to stay adherent to REST has served me better every single time.
+</blockquote>
+
+
+
+
+<!--more-->
+
+
+
+
+<p><div class="longquote"></p>
+
+<blockquote><p>What I&rsquo;ve come to embrace is that being almost fundamentalistic about when I create a new controller to stay adherent to REST has served me better every single time. Every single time I&rsquo;ve regretted the state of my controllers, it&rsquo;s been because I&rsquo;ve had too few of them. I&rsquo;ve been trying to overload things too heavily.</p>
+
+<p>So, in Basecamp 3 we spin off controllers every single time there&rsquo;s even sort of a subresource that makes sense. Which can be things like filters. Like, say, you have this screen and it looks in a certain state. Well, if you apply a couple of filters and dropdowns to it, it&rsquo;s in a different state. Sometimes we just take those states and we make a brand new controller for it.</p>
+
+<p>The heuristics I use to drive that is: whenever I have the inclination that I want to add a method on a controller that&rsquo;s not part of the default five or whatever REST actions that we have by default, make a new controller! And just call it that.</p>
+
+<p>So let&rsquo;s say you have an <code>InboxController</code> and you have an <code>index</code> that shows everything that&rsquo;s in the inbox; and you might have another action where you go like &ldquo;Oh I wanna see like the pending. Just show me the pending emails in that or something like that&rdquo;. So you add an action called <code>pendings</code>:</p>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">InboxesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">pendings</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>That&rsquo;s a very common pattern right? And a pattern that I used to follow more.</p>
+
+<p>Now I just go like &ldquo;no no no&rdquo;. Have a new controller that&rsquo;s called <code>Inboxes::PendingsController</code> that just has a single method called <code>index</code>:</p>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">InboxesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Inboxes</span><span class="o">::</span><span class="no">PendingsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>And what I found is that the freedom that gives you is that each controller now has its own scope with its own sets of filters that apply [&hellip;].</p>
+
+<p>So we&rsquo;ve had great controller proliferation and especially controller proliferation within namespaces. So let&rsquo;s say we have a <code>MessagesController</code> and below that controller we might have a <code>Messages::DraftsController</code> and we might have a <code>Messages::TrashesController</code> and we might have all these other subcontrollers or subresources within the same thing. That&rsquo;s been a huge success.
+<div></p></blockquote>
+
+<p>Amen.</p>
+
+<p>So basically controllers should only use the default CRUD methods <code>index</code>, <code>show</code>, <code>new</code>, <code>edit</code>, <code>create</code>, <code>update</code>, <code>destroy</code>. Any other methods would lead to the creation of a dedicated controller (which itself only has default CRUD methods).</p>
+
+<h2>What I think about it</h2>
+
+<p>From now on the following opinions are my own. Different opinions are totally OK. Just saying, before you call me a pontificating zealot. Calm down guys!</p>
+
+<p>Anyways, I was happy to learn that I have been using &ldquo;the DHH way&rdquo; to organize controllers for more than a year now #DHHFanboy.</p>
+
+<p>I like this organization for several reasons.</p>
+
+<h3>It encourages you to produce simpler code</h3>
+
+<p>With this technique you can create as many controllers as you want.<br/>
+Use your judgment though: If the controller only has default CRUD methods and is relatively short/simple (like the ones scaffolded by Rails), there is probably no need to prematurely extract each <code>index</code>/<code>show</code>/etc into their own controller.</p>
+
+<p>Where the controller splitting technique becomes very cool is when the controller is getting heavier, even when it has only default CRUD methods.
+What to do then? Well, just put the heavy code in its own dedicated controller!</p>
+
+<p>For example, here is what our most complicated controller looks like at my current company (we are using &ldquo;relatively skinny models and fat controllers&rdquo; so YMMV).
+It allows you to purchase a product in our API app:</p>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="ss">V1</span><span class="p">:</span><span class="ss">:PurchasesController</span> <span class="o">&lt;</span> <span class="ss">Api</span><span class="p">:</span><span class="ss">:V1</span><span class="o">::</span><span class="no">ApplicationController</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">rescue_from</span> <span class="ss">Stripe</span><span class="p">:</span><span class="ss">:StripeError</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="ss">:log_payment_error</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="n">load_product</span>
+</span><span class='line'>    <span class="n">load_device</span>
+</span><span class='line'>    <span class="n">load_or_create_user</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">create_order</span>
+</span><span class='line'>    <span class="n">create_payment</span>
+</span><span class='line'>    <span class="n">authorize_payment</span>
+</span><span class='line'>    <span class="n">confirm_address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@order</span><span class="p">,</span> <span class="ss">status</span><span class="p">:</span> <span class="ss">:created</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">load_product</span>
+</span><span class='line'>    <span class="vi">@product</span> <span class="o">=</span> <span class="no">Product</span><span class="o">.</span><span class="n">find_by!</span><span class="p">(</span><span class="ss">uuid</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:product_id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># &hellip;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>There is only one public method (the default CRUD <code>create</code>).
+No premature abstractions into fat models, no &ldquo;service classes&rdquo;, no observers, no nothing, no bullshit.
+Everything is here, nicely contained in the controller. No need to jump between a dozen files to understand what is going on; you just need to open this one file in your code editor. And since controllers are the entry point for any web application code, you would open that file anyway when coding. #ObviousCode</p>
+
+<p>But you may ask &ldquo;Jeez, how long is that class since you dump everything in it? Surely it is very long, like a gazillion lines, right?&rdquo; Nope. 144 lines.</p>
+
+<p>And that&rsquo;s our most complicated controller. Like, the worst of the worst. We could arguably split its code into smaller chunks but it looks good enough to us (YMMV). The rest of our other &ldquo;fat&rdquo; controllers are much simpler: between 6 and 103 lines long, with an average of <strong>15 lines of code</strong> per controller (we have about 150 controllers for now).</p>
+
+<p>Remember the projects you worked on where controllers were 200+ lines long AND this was only a small portion of the code related to the request — the rest of it being scattered between a gazillion of service objects, observers, and models?
+This kind of shit doesn&rsquo;t happen here, mostly thanks to this controller splitting technique, among other easy things like the <a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)" target="_blank">rule of 3</a>. Indeed, <a href="http://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction" target="_blank">duplication is far cheaper than the wrong abstraction</a>, and it&rsquo;s one of the reasons why I think (like DHH) that <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY</a> is total utter despicable crap and it&rsquo;s overrated and it shouldn&rsquo;t be an end in itself and it sucks balls and and and&hellip; Anywaaays, back to our topic!</p>
+
+<h3>It makes your code more uniform</h3>
+
+<p>Knowing that there are can only be so many CRUD actions in a controller is quite cool. No more guessing/spelunking/endlessly scrolling in long controllers to find that one weird action. No more wondering how/if a custom controller method maps to a route.</p>
+
+<p>I don&rsquo;t like to be <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment" target="_blank">surprised</a> when doing mundane organization.
+I like uniform code, and heavy <a href="http://rubyonrails.org/doctrine/#convention-over-configuration" target="_blank">convention over configuration</a> is one of the many reasons why I still prefer Rails compared to other Ruby frameworks.
+Everything is organized the same, so you spend less time doing mundane decisions, and make faster progress in areas that really matter for the business.</p>
+
+<p>In theory, it also means that you can move from one codebase to another and be 100% productive in a very short time. In practice people seem to encounter many &ldquo;horrible Rails apps&rdquo; in the wild. One company may use architectural patterns such as <a href="https://github.com/rails/rails-observers" target="_blank">observers</a> (not my cup of tea), another might use a whole additional architecture layer such as <a href="https://github.com/apotonick/trailblazer" target="_blank">Trailblazer</a> (not my cup of tea either but it has some interesting ideas), another company will use yet another tool, another one will use its own custom sauce, etc.</p>
+
+<p>All of this because people seem uneasy and unhappy with the so-called &ldquo;lack of structure&rdquo; in vanilla Rails apps.
+So they look for additional structure elsewhere. Guys! The solution is right under your nose! Split your controllers, and only use the default CRUD methods.
+Simple as pie, and junior developer friendly.</p>
+
+<p>Rails could possibly do a better job of promoting this controller splitting heuristics. Their <a href="http://guides.rubyonrails.org/routing.html#non-resourceful-routes" target="_blank">doc</a> only briefly says &ldquo;[&hellip;] you should usually use resourceful routing [&hellip;]&rdquo;.
+But the idea of CRUD actions and RESTful routes has <a href="http://guides.rubyonrails.org/routing.html#resource-routing-the-rails-default" target="_blank">prominently been featured</a> in their doc for ages.
+If you RTFM&#8217;ed, it has probably crossed your mind at least once that adding custom methods (apart from the CRUD ones) is not very &ldquo;Rails way&rdquo;. Splitting controllers is a good answer to that uneasy feeling.</p>
+
+<h3>It makes you think in terms of REST</h3>
+
+<p>A lot of people like REST because it is uniform and simple.
+Once you understand a (truly) RESTful API, it is easier to understand another one. In theory at least: authentication anyone? ;&ndash;). The business logic obviously differs between applications so you have to understand it, but how you consume that logic is the same: you <a href="https://stripe.com/docs/api#create_charge" target="_blank">create a charge</a> in Stripe, you <a href="https://www.twilio.com/docs/api/rest/message" target="_blank">create a SMS</a> in Twilio (i.e. you send it), you <a href="https://developer.github.com/v3/repos/#get" target="_blank">get a repository</a> in Github, etc.</p>
+
+<p>You have to bend your mind a little at first to use REST nouns instead of actions: you don&rsquo;t &ldquo;pay&rdquo;, you &ldquo;create a payment&rdquo;. You don&rsquo;t &ldquo;add funds to your balance&rdquo; you &ldquo;create a fund in a balance&rdquo;. Et cetera.
+Maybe a bit weird at first, but I would pay this price any day of the week rather than going back to SOAP, WSDL and all that jazz (ex-Java/JEE developers will know what I&rsquo;m talking about).</p>
+
+<p>As a bonus, I think that having your whole business logic interface (not necessarily implementation) dictated by REST makes for a cleaner and simpler business logic. You can only have objects with so many actions: no more, no less. Yet you know you can express anything with REST, and it will be sound and dependable. It is a liberating constraint.</p>
+
+<p>Here are some example RESTful Rails routes that map to splitted controllers that only use CRUD actions.</p>
+
+<p><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">resources</span> <span class="ss">:purchases</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:create</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">resources</span> <span class="ss">:costs_calculations</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:create</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:company</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">resource</span> <span class="ss">:account_details</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:update</span>
+</span><span class='line'>  <span class="n">resource</span> <span class="ss">:website_details</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:update</span>
+</span><span class='line'>  <span class="n">resource</span> <span class="ss">:contact_details</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:update</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:balance</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">resources</span> <span class="ss">:funds</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:create</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">resource</span> <span class="ss">:bank_account</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="ss">:update</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>For best REST design (especially when subresources are involved), I usually write down the REST action+resource first on a temporary note (example: <code>POST /balance/funds</code>) without worrying about the implementation. Then when I am happy with the naming, I translate it to a Rails route, which is trivial since Rails has very good REST support.</p>
+
+<h2>Wrapping up</h2>
+
+<p>Splitting your Rails controllers when they have a very specific scope, too much logic, or too many mixed concerns can have a lot of good side effects in your code.</p>
+
+<p>It doesn&rsquo;t mean that you never abstract. It just comes later down the road.
+At some point some logic needs to be shared by several controllers. Sometimes even a splitted controller with only one public method gets too big. Et cetera.
+This is where concerns, model methods, and even — may God forgive me — service objects come into play (luckily service objects should be rare if you are careful).</p>
+
+<p>The more your app grows, the more time you will need to spend to understand it, no matter how clean the code is. But splitting your controllers makes things easier.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jerome Dalbert</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-28T00:42:00-08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2016</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers" data-counturl="http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/leveraging-rails-custom-configuration" title="Previous Post: Leveraging Rails' custom configuration">&laquo; Leveraging Rails' custom configuration</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1 class="comments">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+
+  <p>Hi! I am Jerome Dalbert and this is my software development blog. <a href="/about">More...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/how-dhh-organizes-his-rails-controllers">How DHH Organizes His Rails Controllers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/leveraging-rails-custom-configuration">Leveraging Rails' Custom Configuration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/migrate-from-oh-my-zsh-to-prezto">Migrate From Oh-my-zsh to Prezto</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108942572017801116744?rel=author">
+      
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeromedevblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers';
+        var disqus_url = 'http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
