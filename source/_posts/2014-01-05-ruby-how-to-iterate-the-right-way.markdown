@@ -9,7 +9,7 @@ categories:
 {% img header http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here. %}
 
 <div class="left-header">
-{% blockquote Professor David West, <a href="http://vimeo.com/77415896#t=48m04s" target="blank">OOP is Dead! Long Live OODD!</a> %}
+{% blockquote Professor David West, <a href="http://vimeo.com/77415896#t=48m04s" target="_blank">OOP is Dead! Long Live OODD!</a> %}
 If any of you have written code in the last year that had an explicit loop [...], you don't understand collections.
 {% endblockquote %}
 </div>

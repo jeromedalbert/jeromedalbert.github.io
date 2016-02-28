@@ -8,7 +8,7 @@ categories:
 
 {% img header https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg Pipe the whole result to the "lolcat" Ruby gem for better effect. %}
 
-Zsh is an amazing shell, and <a href="https://github.com/robbyrussell/oh-my-zsh" target="blank">Oh-my-zsh</a> is very good at showcasing its power without having to dive into too much configuration.
+Zsh is an amazing shell, and <a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">Oh-my-zsh</a> is very good at showcasing its power without having to dive into too much configuration.
 I recommend it to Zsh first-timers: within minutes they can enjoy autocompletion on steroids, crazy prompt tweaking, git integration as well as many other plugins.
 
 BUT. It's God. Damn. Slow!<!--more-->
@@ -17,7 +17,7 @@ Wanna spend the night happily coding and hacking in the "zone"?
 Here, wait for 1 long second (or more) whenever you open up a new terminal window/tab.
 Are you triggering tab autocompletion? Oh boy. Come back tomorrow.
 
-Enter <a href="https://github.com/sorin-ionescu/prezto" target="blank">Prezto</a>, a.k.a the "Instantly Awesome Zsh". It began as a fork of Oh-my-zsh, but was later completely rewritten with optimization in mind, and moved to its own repo.  
+Enter <a href="https://github.com/sorin-ionescu/prezto" target="_blank">Prezto</a>, a.k.a the "Instantly Awesome Zsh". It began as a fork of Oh-my-zsh, but was later completely rewritten with optimization in mind, and moved to its own repo.  
 
 Here's how I migrated in order to have the exact same behavior as before, while still having a fast shell. Yes, I like to have my cake and eat it too.
 
@@ -27,7 +27,7 @@ Very straightforward:
 
 - Backup your existing configuration: `~/.oh-my-zsh`, `~/.zshrc` and your possible other dotfiles
 - Uninstall Oh-my-zsh by running `uninstall_oh_my_zsh`
-- Install Prezto by following the quick instructions on the <a href="https://github.com/sorin-ionescu/prezto" target="blank">github repo</a>
+- Install Prezto by following the quick instructions on the <a href="https://github.com/sorin-ionescu/prezto" target="_blank">github repo</a>
 
 Done. You now have a bunch of symlinked `.z<something>` dotfiles in your home folder.
 
@@ -56,7 +56,7 @@ alias gl="git pull --rebase"
 ## Customizing the prompt
 
 Now to the fun part!  
-Prezto contains half a dozen <a href="https://github.com/sorin-ionescu/prezto#themes" target="blank">example themes</a> compared to the 140 (!) ones of Oh-my-zsh. If you have a custom prompt like me, you will need to tinker a bit.
+Prezto contains half a dozen <a href="https://github.com/sorin-ionescu/prezto#themes" target="_blank">example themes</a> compared to the 140 (!) ones of Oh-my-zsh. If you have a custom prompt like me, you will need to tinker a bit.
 
 My theme is quite minimalist: just display the current path followed by `$` and a space.
 When in a Git repo, I like to display the branch name followed by a dirty/clean indicator like so:
@@ -177,11 +177,11 @@ bindkey "^I" expand-or-complete-with-dots
 That's it, you now have a fast zsh that behaves like before!
 
 I skipped some very minor configurations in this article, so if you want to review exactly what I've done (or if you want to know what kind of crazy stuff I put in my `~/.zshrc`),
-have a look at the commits in my <a href="https://github.com/jeromedalbert/prezto/commits/master" target="blank">Prezto fork</a>.
+have a look at the commits in my <a href="https://github.com/jeromedalbert/prezto/commits/master" target="_blank">Prezto fork</a>.
 
 Enjoy!
 
-*EDIT: <a href="https://news.ycombinator.com/item?id=8158707" target="blank">Hacker News thread</a>*
+*EDIT: <a href="https://news.ycombinator.com/item?id=8158707" target="_blank">Hacker News thread</a>*
 
 <div class="references">
 *I prefer cider.

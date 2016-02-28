@@ -93,6 +93,10 @@ article.hentry .article-only {
   display: block;
 }
 
+article.hentry .preview-only {
+  display: none;
+}
+
 article {
   font-family: $article-font;
   font-size: 16px;
@@ -182,4 +186,9 @@ a.ellipsis {
 
 .clear {
   clear: both;
+}
+
+article .longquote blockquote {
+  font-style: normal;
+  font-size: 1.1em;
 }
