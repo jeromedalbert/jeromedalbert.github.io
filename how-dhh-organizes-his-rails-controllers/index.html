@@ -167,14 +167,14 @@ What I&#8217;ve come to embrace is that being almost fundamentalistic about when
 
 <p>Amen.</p>
 
-<p>So basically controllers should only use the default CRUD actions <code>index</code>, <code>show</code>, <code>new</code>, <code>edit</code>, <code>create</code>, <code>update</code>, <code>destroy</code>. Any other action would lead to the creation of a dedicated controller (which itself only has default CRUD actions).</p>
+<p>So basically he says that controllers should only use the default CRUD actions <code>index</code>, <code>show</code>, <code>new</code>, <code>edit</code>, <code>create</code>, <code>update</code>, <code>destroy</code>. Any other action would lead to the creation of a dedicated controller (which itself only has default CRUD actions).</p>
 
 <h2>What I think about it</h2>
 
 <p>From now on the following opinions are my own. Different opinions are totally OK. Just saying, before you call me a pontificating zealot. Calm down guys!</p>
 
 <p>Anyways, I was happy to learn that I have been using &ldquo;the DHH way&rdquo; to organize controllers for more than a year now #DHHFanboy. The examples he mentions are only about filtering though, and are probably overkill for simple controller logic.
-A common way to filter in REST is by using query parameters (e.g. <code>GET /inboxes?state=pending</code>), so I would stick to that <em>when the code is short and simple</em> (once it gets long or complicated or there are too many mixed actions/concerned, I would do the same as him).</p>
+A common way to filter in REST is by using query parameters (e.g. <code>GET /inboxes?state=pending</code>), so I would stick to that when the code is short and simple (once it gets long or complicated or there are too many mixed actions/concerns, I would do the same as him).</p>
 
 <p>But I totally agree with the general idea of splitting controllers. I like it for several reasons.</p>
 
@@ -260,7 +260,7 @@ This kind of shit doesn&rsquo;t happen here, mostly thanks to this controller sp
 
 <p>I don&rsquo;t like to be <a href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment" target="_blank">surprised</a> when doing mundane organization.
 I like uniform code, and heavy <a href="http://rubyonrails.org/doctrine/#convention-over-configuration" target="_blank">convention over configuration</a> is one of the many reasons why I still prefer Rails compared to other Ruby frameworks.
-Everything is organized the same, so you spend less time doing mundane decisions, and make faster progress in areas that really matter for the business.</p>
+Everything is organized the same, so you spend less time making mundane decisions, and make faster progress in areas that really matter for the business.</p>
 
 <p>In theory, it also means that you can move from one codebase to another and be 100% productive in a very short time. In practice people seem to encounter many &ldquo;horrible Rails apps&rdquo; in the wild. One company may use architectural patterns such as <a href="https://github.com/rails/rails-observers" target="_blank">observers</a> (not my cup of tea), another might use a whole additional architecture layer such as <a href="https://github.com/apotonick/trailblazer" target="_blank">Trailblazer</a> (not my cup of tea either but it has some interesting ideas), another company will use yet another tool, another one will use its own custom sauce, etc.</p>
 
@@ -277,7 +277,7 @@ If you RTFM&#8217;ed, it has probably crossed your mind at least once that addin
 <p>A lot of people like REST because it is uniform and simple.
 Once you understand a (truly) RESTful API, it is easier to understand another one. In theory at least: authentication anyone? ;&ndash;). The business logic obviously differs between applications so you have to understand it, but how you consume that logic is the same: you <a href="https://stripe.com/docs/api#create_charge" target="_blank">create a charge</a> in Stripe (i.e. you take someone&rsquo;s money), you <a href="https://www.twilio.com/docs/api/rest/message" target="_blank">create an SMS</a> in Twilio (i.e. you send it), you <a href="https://developer.github.com/v3/repos/#get" target="_blank">get a repository</a> in Github, etc.</p>
 
-<p>You have to bend your mind a little at first to use REST nouns instead of actions: you don&rsquo;t &ldquo;pay&rdquo;, you &ldquo;create a payment&rdquo;. You don&rsquo;t &ldquo;add funds to your balance&rdquo; you &ldquo;create a fund in a balance&rdquo;. Et cetera.
+<p>You have to bend your mind a little at first to use REST nouns instead of actions: you don&rsquo;t &ldquo;pay&rdquo;, you &ldquo;create a payment&rdquo;. You don&rsquo;t &ldquo;add funds to your balance&rdquo;, you &ldquo;create a fund in a balance&rdquo;. Et cetera.
 Maybe a bit weird at first, but I would pay this small price any day of the week rather than going back to SOAP, WSDL and all that jazz (ex-Java/JEE developers will know what I&rsquo;m talking about).</p>
 
 <p>As a bonus, I think that having your whole business logic interface (not necessarily implementation) dictated by REST makes for a cleaner and simpler business logic. You can only have objects with so many actions: no more, no less. Yet you know you can express anything with REST, and it will be sound and dependable. It is a liberating constraint.</p>
