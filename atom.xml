@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-03-09T12:49:31-08:00</updated>
+  <updated>2016-03-09T14:26:35-08:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -248,7 +248,7 @@ Maybe a bit weird at first, but I would pay this small price any day of the week
 
 <p>It doesn&rsquo;t mean that you never abstract. It just comes later down the road.
 At some point some logic needs to be shared by several controllers. Sometimes even a splitted controller with only one public method gets too big. Et cetera.
-This is where concerns, model methods, and even — may God forgive me — service objects come into play (luckily service objects should be rare if you are careful).</p>
+This is where concerns, model methods, possibly background jobs, and even sometimes service objects (hopefully not too many) come into play.</p>
 
 <p>The more your app grows, the more time you will need to spend to understand it, no matter how clean the code is. But splitting your controllers makes things easier.</p>
 
