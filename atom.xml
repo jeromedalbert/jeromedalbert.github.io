@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-03-09T12:45:57-08:00</updated>
+  <updated>2016-03-09T12:49:31-08:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -176,7 +176,7 @@ Everything is here, nicely contained in the controller. No need to jump between 
 <p>And that&rsquo;s our most complicated controller. Like, the worst of the worst. We could arguably split its code into smaller chunks but it looks good enough to us (YMMV). The rest of our other &ldquo;fat&rdquo; controllers are much simpler: between 6 and 103 lines long, with an average of <strong>15 lines of code</strong> per controller (we have about 150 controllers for now).</p>
 
 <p>Remember the projects you worked on where controllers were 200+ lines long AND this was only a small portion of the code related to the request — the rest of it being scattered between a gazillion of service objects, observers, and models?
-This kind of shit doesn&rsquo;t happen here, mostly thanks to this controller splitting technique, among other easy things like the <a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)" target="_blank">rule of 3</a>. Indeed, <a href="http://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction" target="_blank">duplication is far cheaper than the wrong abstraction</a>, and it&rsquo;s one of the reasons why I think (like DHH) that <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY</a> and <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle" target="_blank">SRP</a> are total utter despicable crap and they are overrated and they shouldn&rsquo;t be an end in themselves and they suck balls and and and&hellip; Anywaaays, back to our topic!</p>
+This kind of shit doesn&rsquo;t happen here, mostly thanks to this controller splitting technique, among other easy things like the <a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)" target="_blank">rule of 3</a>. Indeed, <a href="http://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction" target="_blank">duplication is far cheaper than the wrong abstraction</a>, and it&rsquo;s one of the reasons why I think (like DHH) that <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY</a> and <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle" target="_blank">SRP</a> are crap and they are overrated and they shouldn&rsquo;t be an end in themselves and they suck balls and and and&hellip; Anywaaays, back to our topic!</p>
 
 <h3>It makes your code more uniform</h3>
 
