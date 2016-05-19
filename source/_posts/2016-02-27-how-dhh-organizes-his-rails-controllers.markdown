@@ -8,6 +8,8 @@ categories:
 
 {% img header https://c2.staticflickr.com/2/1491/24693945943_9d42fc3a3a_o.png Wow. Such RESTful. Very web. Amaze. %}
 
+<span class="article-only">*EDIT: This article is also available in <a href="http://postd.cc/how-dhh-organizes-his-rails-controllers/" target="_blank">Japanese</a>. すごい!*</span>
+
 In a recent <a href="http://www.fullstackradio.com/32" target="_blank">interview with Full Stack Radio</a>
 our Lord and Savior DHH™ explains how he organizes Rails controllers in the latest version of <a href="https://basecamp.com" target="_blank">Basecamp</a>. Here is an enhanced transcript of his holy words:
 
@@ -184,5 +186,3 @@ At some point some logic needs to be shared by several controllers. Sometimes ev
 This is where concerns, model methods, possibly background jobs, and even sometimes service objects (hopefully not too many) come into play.
 
 The more your app grows, the more time you will need to spend to understand it, no matter how clean the code is. But splitting your controllers makes things easier.
-
-*EDIT: <a href="https://www.reddit.com/r/ruby/comments/4817pd/how_dhh_organizes_his_rails_controllers" target="_blank">Reddit comment thread</a>*

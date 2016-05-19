@@ -8,7 +8,7 @@ categories:
 
 {% img header noarticle http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg Jam. Yummy. %}
 
-<span class="article-only">*EDIT: some of my latest articles have had traffic orders of magnitude larger than the one mentioned below, making the figures completely obsolete.*</span>
+<span class="article-only">*EDIT: Some of my latest articles have had traffic orders of magnitude larger than the one mentioned below, making the figures completely obsolete.*</span>
 
 It looks like my latest blog post, [A Diagram of the Ruby Core Object Model](/a-diagram-of-the-ruby-core-object-model), has had quite a bit of a success in the Ruby community.
 Mostly in the educational sphere, that is, <!--more-->Ruby beginners (the targeted audience) but also... trainers!  
