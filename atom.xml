@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-03-09T14:26:35-08:00</updated>
+  <updated>2016-05-18T18:26:16-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -19,6 +19,8 @@
     <updated>2016-02-28T00:42:00-08:00</updated>
     <id>http://jeromedalbert.com/how-dhh-organizes-his-rails-controllers</id>
     <content type="html"><![CDATA[<p><img class="header" src="https://c2.staticflickr.com/2/1491/24693945943_9d42fc3a3a_o.png" title="Wow. Such RESTful. Very web. Amaze." ></p>
+
+<p><span class="article-only"><em>EDIT: This article is also available in <a href="http://postd.cc/how-dhh-organizes-his-rails-controllers/" target="_blank">Japanese</a>. すごい!</em></span></p>
 
 <p>In a recent <a href="http://www.fullstackradio.com/32" target="_blank">interview with Full Stack Radio</a>
 our Lord and Savior DHH™ explains how he organizes Rails controllers in the latest version of <a href="https://basecamp.com" target="_blank">Basecamp</a>. Here is an enhanced transcript of his holy words:</p>
@@ -251,8 +253,6 @@ At some point some logic needs to be shared by several controllers. Sometimes ev
 This is where concerns, model methods, possibly background jobs, and even sometimes service objects (hopefully not too many) come into play.</p>
 
 <p>The more your app grows, the more time you will need to spend to understand it, no matter how clean the code is. But splitting your controllers makes things easier.</p>
-
-<p><em>EDIT: <a href="https://www.reddit.com/r/ruby/comments/4817pd/how_dhh_organizes_his_rails_controllers" target="_blank">Reddit comment thread</a></em></p>
 ]]></content>
   </entry>
   
@@ -1034,7 +1034,7 @@ Just for the sake of being comprehensive, here are the other 20%*, slightly more
     <id>http://jeromedalbert.com/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities</id>
     <content type="html"><![CDATA[<p><img class="header noarticle" src="http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg" title="Jam. Yummy." ></p>
 
-<p><span class="article-only"><em>EDIT: some of my latest articles have had traffic orders of magnitude larger than the one mentioned below, making the figures completely obsolete.</em></span></p>
+<p><span class="article-only"><em>EDIT: Some of my latest articles have had traffic orders of magnitude larger than the one mentioned below, making the figures completely obsolete.</em></span></p>
 
 <p>It looks like my latest blog post, <a href="http://jeromedalbert.com/a-diagram-of-the-ruby-core-object-model">A Diagram of the Ruby Core Object Model</a>, has had quite a bit of a success in the Ruby community.
 Mostly in the educational sphere, that is, <!--more-->Ruby beginners (the targeted audience) but also&hellip; trainers!<br/>
