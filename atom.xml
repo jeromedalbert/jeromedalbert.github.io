@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-06-27T10:30:16-07:00</updated>
+  <updated>2016-06-27T10:32:21-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -18,7 +18,7 @@
     <link href="http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db"/>
     <updated>2016-06-27T08:48:00-07:00</updated>
     <id>http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db</id>
-    <content type="html"><![CDATA[<p><img class="header" src="https://c2.staticflickr.com/8/7364/27257296733_bc2c0d0de2_m.jpg" title="MacGyver would be proud of this solution." ></p>
+    <content type="html"><![CDATA[<p><img class="header" src="https://c2.staticflickr.com/8/7364/27257296733_bc2c0d0de2_m.jpg" title="MacGyver would be proud of this." ></p>
 
 <p>Everyone likes a good old quick and dirty hack every once in a while. For
 example, who hasn&rsquo;t stored — or at least hasn&rsquo;t been tempted by storing — a
