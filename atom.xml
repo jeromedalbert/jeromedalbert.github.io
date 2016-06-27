@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-06-27T10:32:21-07:00</updated>
+  <updated>2016-06-27T13:30:54-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -89,6 +89,24 @@ attached (bad pun intended).</p>
 
 
 <p>And you&rsquo;re good to go.</p>
+
+<p><em>EDIT: As Hauleth has pointed out in the comments, Postgres has an <a
+href="https://www.postgresql.org/docs/current/static/arrays.html"
+target="_blank">array</a> data type exactly for this use case. The
+corresponding migration would then be:</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">AddSizesToProducts</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">add_column</span> <span class="ss">:products</span><span class="p">,</span> <span class="ss">:sizes</span><span class="p">,</span> <span class="ss">:text</span><span class="p">,</span> <span class="ss">array</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Conclusion</h2>
 
