@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>JSONB + Rails to store glorified strings in your DB - Jerome's Adventures in Software</title>
+  <meta name="author" content="Jerome Dalbert">
+
+  
+  <meta name="description" content="Everyone likes a good old quick and dirty hack every once in a while. For
+example, who hasn&rsquo;t stored — or at least hasn&rsquo;t been tempted &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/jeromedalbert" rel="alternate" title="Jerome's Adventures in Software" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/blog.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44431393-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <a href="/">
+    <div id="logo"><div class="sparkle sparkle1"></div><div class="sparkle sparkle2"></div><div class="sparkle sparkle3"></div><div class="sparkle sparkle4"></div><div class="sparkle sparkle5"></div></div><br/>
+  </a>
+  <h1><a href="/">Jerome's Adventures in Software</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">JSONB + Rails to Store Glorified Strings in Your DB</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-27T08:48:00-07:00" pubdate data-updated="true">Jun 27<span>th</span>, 2016</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img class="header" src="https://c2.staticflickr.com/8/7364/27257296733_bc2c0d0de2_m.jpg" title="MacGyver would be proud of this solution." ></p>
+
+<p>Everyone likes a good old quick and dirty hack every once in a while. For
+example, who hasn&rsquo;t stored — or at least hasn&rsquo;t been tempted by storing — a
+list of values as a simple string in the database?</p>
+
+<p>Let&rsquo;s see when this could be a good choice, and how to use Postgres JSONB to
+make our lazy decision nicer<!--more--> to implement!</p>
+
+<h2>The case for storing strings in DB</h2>
+
+<p>Say we are working on a simplified app where products have predefined available
+sizes. When buying a product, users can choose between these available sizes.
+For example a T-shirt could come in S, M, L and XL sizes. A pack of cookies
+could have &ldquo;tiny&rdquo;, &ldquo;reasonable&rdquo; and &ldquo;super-size-me&rdquo; editions. Etc. When trying
+to implement this, we are faced with a choice.</p>
+
+<ol>
+<li><p>We could &ldquo;just wing it™&rdquo; and store a comma-separated string. Our T-shirt
+would have the <code>"S,M,L,XL"</code> string in an <code>available_sizes</code> field. When
+editing this product, the front-end would send this string and the back-end
+would store it as is. When displaying these sizes to our users in a select
+box, our code would <code>split(',')</code> to be able to iterate on them.</p></li>
+<li><p>Another possibly cleaner solution would be to have a separate <code>sizes</code> table.
+A product has many sizes and a size can belong to many products. This is
+what they usually teach you in traditional Computer Science classes.</p></li>
+</ol>
+
+
+<p>Which solution is best? As usual it&rsquo;s all about trade-off and it depends on
+your context. Solution 2 has no data duplication and is possibly easier to
+query for stats and whatnot, but it involves two additional tables: <code>sizes</code> + a
+table to store our many-to-many relationship. For a simple feature like this,
+especially if the future is uncertain, I would argue that solution 1 is often
+good enough. It is the quickest to implement with minimal effort, and easily
+modifiable in the future if needed. If one day people need to do aggregate
+queries for stats purposes (inefficient/cumbersome and sometimes impossible
+with strings), one can always improve later with a migration. Either by
+implementing the second solution with additional tables, or by using some form
+of noSQL storage, depending on the needs.</p>
+
+<h2>A nicer way with JSONB</h2>
+
+<p>So you&rsquo;ve decided to store good ol&#8217; comma-separated strings in your app. You
+probably didn&rsquo;t need to read a blog post for that! But some of you may not know
+that the Postgres JSONB format could fit the bill quite nicely as a glorified
+string.</p>
+
+<p>JSONB allows you to store JSON as is, and Rails has very good support for it.
+How good? Well, it means that your back-end can literally store the <code>["S", "M",
+"L", "XL"]</code> array, which is valid JSON. When retrieving the value from the
+database, Rails presents it to you as a Ruby array, so you can directly iterate
+on it without doing any <code>split</code>! It&rsquo;s arrays all the way down, no strings
+attached (bad pun intended).</p>
+
+<p>All you need is Postgres 9.4+ and a migration like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">AddSizesToProducts</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">add_column</span> <span class="ss">:products</span><span class="p">,</span> <span class="ss">:sizes</span><span class="p">,</span> <span class="ss">:jsonb</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you&rsquo;re good to go.</p>
+
+<h2>Conclusion</h2>
+
+<p>With this technique you get the advantages of a quick and easy implementation without
+the uneasy feeling of handling dirty strings. If you want to drink more of this JSONB kool-aid, I recommend reading
+<a href="https://blog.codeship.com/unleash-the-power-of-storing-json-in-postgres" target="_blank">this post from the Codeship blog</a>,
+especially if you are planning to store javascript objects (pro-tip: you can
+use <code>default: {}</code> in your migrations if needed). In the meantime, happy
+hacking!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jerome Dalbert</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-27T08:48:00-07:00" pubdate data-updated="true">Jun 27<span>th</span>, 2016</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db" data-counturl="http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/how-dhh-organizes-his-rails-controllers" title="Previous Post: How DHH organizes his Rails controllers">&laquo; How DHH organizes his Rails controllers</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1 class="comments">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+
+  <p>Hi! I am Jerome Dalbert and this is my software development blog. <a href="/about">More...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/jsonb-plus-rails-to-store-glorified-strings-in-your-db">JSONB + Rails to Store Glorified Strings in Your DB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-dhh-organizes-his-rails-controllers">How DHH Organizes His Rails Controllers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/leveraging-rails-custom-configuration">Leveraging Rails' Custom Configuration</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108942572017801116744?rel=author">
+      
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jeromedevblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db';
+        var disqus_url = 'http://jeromedalbert.com/jsonb-plus-rails-to-store-glorified-strings-in-your-db';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
