@@ -9,7 +9,9 @@
   <meta name="author" content="Jerome Dalbert">
 
   
-  <meta name="description" content="I am a visual learner. A picture is worth a thousand words. When I started learning Ruby, I could not find a decent diagram that would just sum up &hellip;">
+  <meta name="description" content="<img class="header noarticle"
+src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg" title=
+"Yep, this is a diagram. What an acute &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,11 +95,15 @@
   </header>
 
 
-<div class="entry-content"><p><img class="header noarticle" src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg" title="Yep, this is a diagram. What an acute sense of observation. I'm proud of you." ></p>
+<div class="entry-content"><p><img class="header noarticle"
+src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_m.jpg" title=
+"Yep, this is a diagram. What an acute sense of observation. I'm proud of you."
+/></p>
 
 <p>I am a visual learner. A picture is worth a thousand words.</p>
 
-<p>When I started learning Ruby, I could not find a decent diagram that would just sum up the Ruby classes, modules, and their hierarchy.</p>
+<p>When I started learning Ruby, I could not find a decent diagram that would just
+sum up the Ruby classes, modules, and their hierarchy.</p>
 
 <p>So I made mine.<!--more--><br/>
 By hand.<br/>
@@ -105,19 +111,25 @@ On an A4 sheet.</p>
 
 <p>Here is the result (click for a full size view):</p>
 
-<p><a href="http://farm6.staticflickr.com/5443/10075536704_84aa13676a_o.jpg" target="_blank"><img src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_b.jpg"></img></a></p>
+<p><a href="http://farm6.staticflickr.com/5443/10075536704_84aa13676a_o.jpg"
+target="_blank"><img
+src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_b.jpg" /></a></p>
 
 <p>Most of Ruby&rsquo;s guts at one glance: pretty neat, huh ?</p>
 
 <ul>
 <li>Modules are on the top left.</li>
-<li>The usual types are here: strings, arrays, hashes, numbers, &ldquo;booleans&rdquo; (actually <code>TrueClass</code> and <code>FalseClass</code>).</li>
+<li>The usual types are here: strings, arrays, hashes, numbers, &ldquo;booleans&rdquo;
+(actually <code>TrueClass</code> and <code>FalseClass</code>).</li>
 <li>The error hierarchy is on the right.</li>
 <li>Other classes are in the middle.</li>
 </ul>
 
 
-<p>Note: To have a decent layout, I only drew 70% of the <a href="http://ruby-doc.org/core-2.0" target="_blank">Ruby 2 Core classes</a>. All of the important ones are there, except <code>Random</code>, <code>Time</code>, <code>GC</code> and <code>ObjectSpace</code>: when I noticed, it was too late. :&ndash;)</p>
+<p>Note: To have a decent layout, I only drew 70% of the
+<a href="http://ruby-doc.org/core-2.0" target="_blank">Ruby 2 Core classes</a>.
+All of the important ones are there, except <code>Random</code>, <code>Time</code>, <code>GC</code> and
+<code>ObjectSpace</code>: when I noticed, it was too late. :&ndash;)</p>
 
 <h2>What can we &ldquo;draw&rdquo; from this ?</h2>
 
@@ -125,20 +137,32 @@ On an A4 sheet.</p>
 
 <ul>
 <li>Arrays are enumerable, numbers are comparable.</li>
-<li>&ldquo;Everything is an object&rdquo;, or more precisely, every box is this diagram is a BasicObject.</li>
-<li>Object includes the Kernel module, so Object has all the instance methods of Kernel, like <code>puts</code>, <code>gets</code>, <code>exit</code>.<br/>
-When you write Ruby code, you are inside a <code>main</code> object, that&rsquo;s why you can just write <code>puts 'Hello world'</code> instead of <code>Kernel.puts 'Hello world'</code>.</li>
+<li>&ldquo;Everything is an object&rdquo;, or more precisely, every box is this diagram is a
+BasicObject.</li>
+<li>Object includes the Kernel module, so Object has all the instance methods of
+Kernel, like <code>puts</code>, <code>gets</code>, <code>exit</code>.  When you write Ruby code, you are
+inside a <code>main</code> object, that&rsquo;s why you can just write <code>puts 'Hello world'</code>
+instead of <code>Kernel.puts 'Hello world'</code>.</li>
 </ul>
 
 
-<p>So, everything makes sense and is quite simple actually !<br/>
-Except maybe the fact that a module is a class, and class inherits from module. Don&rsquo;t worry, you will eventually wrap your head around it.</p>
+<p>So, everything makes sense and is quite simple actually !  Except maybe the fact
+that a module is a class, and class inherits from module. Don&rsquo;t worry, you will
+eventually wrap your head around it.</p>
 
 <h2>Going further</h2>
 
-<p>In addition to Ruby Core, the <a href="http://www.ruby-doc.org/stdlib-2.0.0/" target="_blank">Ruby Standard Library</a> contains many other very useful classes and modules, such as <code>Date</code>, <code>Forwardable</code>, <code>SimpleDelegator</code>, <code>Net::HTTP</code>, <code>OpenStruct</code>, etc.</p>
+<p>In addition to Ruby Core, the
+<a href="http://www.ruby-doc.org/stdlib-2.0.0/" target="_blank">Ruby Standard Library</a>
+contains many other very useful classes and modules, such as <code>Date</code>,
+<code>Forwardable</code>, <code>SimpleDelegator</code>, <code>Net::HTTP</code>, <code>OpenStruct</code>, etc.</p>
 
-<p>This diagram does not explain the Ruby method lookup path, which takes eigenclasses, included modules and superclasses into account. I recommend reading this <a href="https://github.com/elm-city-craftworks/practicing-ruby-manuscripts/blob/master/articles/v1/001-method-lookup.md" target="_blank">enlightening article</a> from Practicing Ruby.</p>
+<p>This diagram does not explain the Ruby method lookup path, which takes
+eigenclasses, included modules and superclasses into account. I recommend
+reading this
+<a href="https://github.com/elm-city-craftworks/practicing-ruby-manuscripts/blob/master/articles/v1/001-method-lookup.md"
+target="_blank">enlightening article</a>
+from Practicing Ruby.</p>
 </div>
 
 

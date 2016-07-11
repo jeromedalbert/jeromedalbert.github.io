@@ -9,9 +9,9 @@
   <meta name="author" content="Jerome Dalbert">
 
   
-  <meta name="description" content="Common scenario
-You are writing a basic Ruby script that needs to read or write in some text files.
-So you search &ldquo;ruby write file&rdquo; and &hellip;">
+  <meta name="description" content="<img class="header margintop"
+src="http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg"
+title="The first hipsters. These guys developed &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,19 +95,25 @@ So you search &ldquo;ruby write file&rdquo; and &hellip;">
   </header>
 
 
-<div class="entry-content"><p><img class="margintop header" src="http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg" title="The first hipsters. These guys developed the C programming language." ></p>
+<div class="entry-content"><p><img class="header margintop"
+src="http://farm4.staticflickr.com/3753/11699963024_bda6a4c9b8_m.jpg"
+title="The first hipsters. These guys developed the C programming language." /></p>
 
 <p><strong>Common scenario</strong><br/>
-You are writing a basic Ruby script that needs to read or write in some text files.<br/>
+You are writing a basic Ruby script that needs to read or write in some text
+files.<br/>
 So you search &ldquo;ruby write file&rdquo; and &ldquo;ruby read file&rdquo; on Google.<br/>
-You end up on the usual tutorials and Stack Overflow answers that tell you to open files with <code>r</code> or <code>w</code> mode, &ldquo;1970 C style&rdquo;<!--more-->.</p>
+You end up on the usual tutorials and Stack Overflow answers that tell you to
+open files with <code>r</code> or <code>w</code> mode, &ldquo;1970 C style&rdquo;<!--more-->.</p>
 
 <p>It&rsquo;s OK, it works.
 But you may think:<br/>
-&ldquo;I&rsquo;m in the 21<sup>st</sup> century goddammit. I just want to read/write in a file, spare me the details!&rdquo;</p>
+&ldquo;I&rsquo;m in the 21<sup>st</sup> century goddammit. I just want to read/write in a
+file, spare me the details!&rdquo;</p>
 
 <p>Worry not, fellow citizen. Have a look at the code below.<br/>
-In all of these examples, Ruby automatically opens and closes the file. No need to think about it.</p>
+In all of these examples, Ruby automatically opens and closes the file. No need
+to think about it.</p>
 
 <h2>Read a whole file</h2>
 
@@ -131,18 +137,24 @@ In all of these examples, Ruby automatically opens and closes the file. No need 
 
 <p>The above code covers 80%* of the needs for quick Ruby scripts.
 Feel free to skip the rest of this post.<br/>
-Just for the sake of being comprehensive, here are the other 20%*, slightly more complex because used less often.</p>
+Just for the sake of being comprehensive, here are the other 20%*, slightly
+more complex because used less often.</p>
 
-<h4>Read a file line by line (useful if you don&rsquo;t want to load a big file entirely in memory):</h4>
+<h4>Read a file line by line (useful if you don&rsquo;t want to load a big file</h4>
+
+<p>entirely in memory):</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;input.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each_line</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">line</span> <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Another way to do it is <code>File.foreach('input.txt') { |line| puts line }</code>, though I don&rsquo;t find <code>foreach</code> very Ruby idiomatic.</p>
+<p>Another way to do it is <code>File.foreach('input.txt') { |line| puts line }</code>, though
+I don&rsquo;t find <code>foreach</code> very Ruby idiomatic.</p>
 
-<h4>Put the lines of a file in an array of lines (I&rsquo;ve never needed to do it, but this is for reference):</h4>
+<h4>Put the lines of a file in an array of lines (I&rsquo;ve never needed to do it,</h4>
+
+<p>but this is for reference):</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lines</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="s1">&#39;input.txt&#39;</span><span class="p">)</span>
@@ -156,7 +168,8 @@ Just for the sake of being comprehensive, here are the other 20%*, slightly more
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You can also do <code>file &lt;&lt; 'some text'</code>. Or <code>file.puts('some text')</code> if you want to insert the text with a <code>\n</code> in the end.</p>
+<p>You can also do <code>file &lt;&lt; 'some text'</code>. Or <code>file.puts('some text')</code> if you want
+to insert the text with a <code>\n</code> in the end.</p>
 
 <div class="references">
 *These numbers are completely made up. Do not trust the Internet.

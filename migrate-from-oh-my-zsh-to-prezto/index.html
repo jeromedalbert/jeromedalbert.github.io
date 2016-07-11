@@ -9,8 +9,9 @@
   <meta name="author" content="Jerome Dalbert">
 
   
-  <meta name="description" content="Zsh is an amazing shell, and Oh-my-zsh is very good at showcasing its power without having to dive into too much configuration.
-I recommend it to &hellip;">
+  <meta name="description" content="<img class="header"
+src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title=
+"Pipe the whole result to the &quot;lolcat&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,29 +95,41 @@ I recommend it to &hellip;">
   </header>
 
 
-<div class="entry-content"><p><img class="header" src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title="Pipe the whole result to the &#34;lolcat&#34; Ruby gem for better effect." alt="Pipe the whole result to the &#34;lolcat&#34; Ruby gem for better effect."></p>
+<div class="entry-content"><p><img class="header"
+src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title=
+"Pipe the whole result to the &quot;lolcat&quot; Ruby gem for better effect." /></p>
 
-<p>Zsh is an amazing shell, and <a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">Oh-my-zsh</a> is very good at showcasing its power without having to dive into too much configuration.
-I recommend it to Zsh first-timers: within minutes they can enjoy autocompletion on steroids, crazy prompt tweaking, git integration as well as many other plugins.</p>
+<p>Zsh is an amazing shell, and
+<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">Oh-my-zsh</a>
+is very good at showcasing its power without having to dive into too much
+configuration. I recommend it to Zsh first-timers: within minutes they can enjoy
+autocompletion on steroids, crazy prompt tweaking, git integration as well as
+many other plugins.</p>
 
 <p>BUT. It&rsquo;s God. Damn. Slow!<!--more--></p>
 
-<p>Wanna spend the night happily coding and hacking in the &ldquo;zone&rdquo;?
-Here, wait for 1 long second (or more) whenever you open up a new terminal window/tab.
-Are you triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
+<p>Wanna spend the night happily coding and hacking in the &ldquo;zone&rdquo;? Here, wait for 1
+long second (or more) whenever you open up a new terminal window/tab. Are you
+triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
 
-<p>Enter <a href="https://github.com/sorin-ionescu/prezto" target="_blank">Prezto</a>, a.k.a the &ldquo;Instantly Awesome Zsh&rdquo;. It began as a fork of Oh-my-zsh, but was later completely rewritten with optimization in mind, and moved to its own repo.</p>
+<p>Enter
+<a href="https://github.com/sorin-ionescu/prezto" target="_blank">Prezto</a>,
+a.k.a the &ldquo;Instantly Awesome Zsh&rdquo;. It began as a fork of Oh-my-zsh, but was
+later completely rewritten with optimization in mind, and moved to its own repo.</p>
 
-<p>Here&rsquo;s how I migrated in order to have the exact same behavior as before, while still having a fast shell. Yes, I like to have my cake and eat it too.</p>
+<p>Here&rsquo;s how I migrated in order to have the exact same behavior as before, while
+still having a fast shell. Yes, I like to have my cake and eat it too.</p>
 
 <h2>Installation</h2>
 
 <p>Very straightforward:</p>
 
 <ul>
-<li>Backup your existing configuration: <code>~/.oh-my-zsh</code>, <code>~/.zshrc</code> and your possible other dotfiles</li>
+<li>Backup your existing configuration: <code>~/.oh-my-zsh</code>, <code>~/.zshrc</code> and your
+possible other dotfiles</li>
 <li>Uninstall Oh-my-zsh by running <code>uninstall_oh_my_zsh</code></li>
-<li>Install Prezto by following the quick instructions on the <a href="https://github.com/sorin-ionescu/prezto" target="_blank">github repo</a></li>
+<li>Install Prezto by following the quick instructions on the
+<a href="https://github.com/sorin-ionescu/prezto" target="_blank">github repo</a></li>
 </ul>
 
 
@@ -125,7 +138,8 @@ Are you triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
 <h2>Fiddling with the dotfiles</h2>
 
 <ul>
-<li>If it annoys you, remove the possible example instructions in <code>~/.zlogin</code> and <code>~/.zlogout</code> (such as displaying a fortune every time you login)</li>
+<li>If it annoys you, remove the possible example instructions in <code>~/.zlogin</code> and
+<code>~/.zlogout</code> (such as displaying a fortune every time you login)</li>
 <li>Put back all your aliases and other customizations into <code>~/.zshrc</code>:</li>
 </ul>
 
@@ -158,25 +172,35 @@ Are you triggering tab autocompletion? Oh boy. Come back tomorrow.</p>
 
 
 <ul>
-<li>If you like to organize your exports/aliases/etc into separate files, have a look at the other dotfiles. I personally don&rsquo;t do that and just have one massive <code>~/.zshrc</code>.</li>
+<li>If you like to organize your exports/aliases/etc into separate files, have a
+look at the other dotfiles. I personally don&rsquo;t do that and just have one
+massive <code>~/.zshrc</code>.</li>
 </ul>
 
 
 <h2>Customizing the prompt</h2>
 
 <p>Now to the fun part!<br/>
-Prezto contains half a dozen <a href="https://github.com/sorin-ionescu/prezto#themes" target="_blank">example themes</a> compared to the 140 (!) ones of Oh-my-zsh. If you have a custom prompt like me, you will need to tinker a bit.</p>
+Prezto contains half a dozen
+<a href="https://github.com/sorin-ionescu/prezto#themes" target="_blank">example themes</a>
+compared to the 140 (!) ones of Oh-my-zsh. If you have a custom
+prompt like me, you will need to tinker a bit.</p>
 
-<p>My theme is quite minimalist: just display the current path followed by <code>$</code> and a space.
-When in a Git repo, I like to display the branch name followed by a dirty/clean indicator like so:</p>
+<p>My theme is quite minimalist: just display the current path followed by <code>$</code> and
+a space. When in a Git repo, I like to display the branch name followed by a
+dirty/clean indicator like so:</p>
 
-<p><img src="https://farm6.staticflickr.com/5562/14685304517_58427bb488_o.png" title="Dirty vs Clean" ></p>
+<p><img src="https://farm6.staticflickr.com/5562/14685304517_58427bb488_o.png"
+title="Dirty vs Clean" /></p>
 
-<p>At the time of writing, most Prezto themes use <code>vcs_info</code> which can detect staged and unstaged changes (i.e. a dirty state).
-But there&rsquo;s no hook for a clean state, so when there are no changes, the prompt will just display nothing.
-I would much rather have a satisfying green little tick that means &ldquo;Nothing else to do! Well done mate, you can have a beer* now&rdquo;.</p>
+<p>At the time of writing, most Prezto themes use <code>vcs_info</code> which can detect
+staged and unstaged changes (i.e. a dirty state). But there&rsquo;s no hook for a
+clean state, so when there are no changes, the prompt will just display nothing.
+I would much rather have a satisfying green little tick that means &ldquo;Nothing else
+to do! Well done mate, you can have a beer* now&rdquo;.</p>
 
-<p>For this, we need to use <code>git-info</code> from the Prezto <code>git</code> plugin. I ended up with this:</p>
+<p>For this, we need to use <code>git-info</code> from the Prezto <code>git</code> plugin. I ended up
+with this:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -241,8 +265,9 @@ I would much rather have a satisfying green little tick that means &ldquo;Nothin
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I then saved the theme in <code>~/.zprezto/modules/prompt/functions/prompt_jerome_setup</code>
-and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
+<p>I then saved the theme in
+<code>~/.zprezto/modules/prompt/functions/prompt_jerome_setup</code> and made Prezto use it
+by having this line in <code>~/.zpreztorc</code>:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>zstyle <span class="s1">&#39;:prezto:module:prompt&#39;</span> theme <span class="s1">&#39;jerome&#39;</span>
@@ -254,7 +279,8 @@ and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
 <h2>Last bits and pieces</h2>
 
 <ul>
-<li>I added <code>history-substring-search</code> and <code>git</code> to the <code>~/.zpreztorc</code> plugin list:</li>
+<li>I added <code>history-substring-search</code> and <code>git</code> to the <code>~/.zpreztorc</code> plugin
+list:</li>
 </ul>
 
 
@@ -289,11 +315,14 @@ and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>history-substring-search</code>: when pressing up/down arrows, completes the beginning of a command by searching in the history.<br/>
-<code>git</code>: adds useful aliases and functions like the <code>git-info</code> one that we discussed above.</p>
+<p><code>history-substring-search</code>: when pressing up/down arrows, completes the
+beginning of a command by searching in the history.<br/>
+<code>git</code>: adds useful aliases and functions like the <code>git-info</code> one that we
+discussed above.</p>
 
 <ul>
-<li>When pressing tab to complete a command, I didn&rsquo;t like the category menus, so I commented these lines out in <code>~/.zprezto/modules/completion/init.zsh</code>:</li>
+<li>When pressing tab to complete a command, I didn&rsquo;t like the category menus, so
+I commented these lines out in <code>~/.zprezto/modules/completion/init.zsh</code>:</li>
 </ul>
 
 
@@ -330,7 +359,8 @@ and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I also modified this line in order to have red diretories when autocompleting the <code>cd</code> command:</p>
+<p>I also modified this line in order to have red diretories when autocompleting
+the <code>cd</code> command:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -371,12 +401,16 @@ and made Prezto use it by having this line in <code>~/.zpreztorc</code>:</p>
 
 <p>That&rsquo;s it, you now have a fast zsh that behaves like before!</p>
 
-<p>I skipped some very minor configurations in this article, so if you want to review exactly what I&rsquo;ve done (or if you want to know what kind of crazy stuff I put in my <code>~/.zshrc</code>),
-have a look at the commits in my <a href="https://github.com/jeromedalbert/prezto/commits/master" target="_blank">Prezto fork</a>.</p>
+<p>I skipped some very minor configurations in this article, so if you want to
+review exactly what I&rsquo;ve done (or if you want to know what kind of crazy stuff I
+put in my <code>~/.zshrc</code>), have a look at the commits in my
+<a href="https://github.com/jeromedalbert/prezto/commits/master"
+target="_blank">Prezto fork</a>.</p>
 
 <p>Enjoy!</p>
 
-<p><em>EDIT: <a href="https://news.ycombinator.com/item?id=8158707" target="_blank">Hacker News thread</a></em></p>
+<p><em>EDIT: <a href="https://news.ycombinator.com/item?id=8158707"
+target="_blank">Hacker News thread</a></em></p>
 
 <div class="references">
 *I prefer cider.
