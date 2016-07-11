@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-{% img header https://c2.staticflickr.com/8/7364/27257296733_bc2c0d0de2_m.jpg MacGyver would be proud of this. %}
+<img class="header" src="https://c2.staticflickr.com/8/7364/27257296733_bc2c0d0de2_m.jpg" title="MacGyver would be proud of this." />
 
 Everyone likes a good old quick and dirty hack every once in a while. For
 example, who hasn't stored — or at least hasn't been tempted by storing — a
@@ -86,10 +86,10 @@ end
 
 ## Conclusion
 
-With this technique you get the advantages of a quick and easy implementation without 
-the uneasy feeling of handling dirty strings. If you want to drink more of this JSONB kool-aid, I recommend reading
-<a href="https://blog.codeship.com/unleash-the-power-of-storing-json-in-postgres" target="_blank">this post from the Codeship blog</a>,
-especially if you are planning to store javascript objects (pro-tip: you can
-use `default: {}` in your migrations if needed). In the meantime, happy
-hacking!
-
+With this technique you get the advantages of a quick and easy implementation
+without the uneasy feeling of handling dirty strings. If you want to drink more
+of this JSONB kool-aid, I recommend reading
+<a href="https://blog.codeship.com/unleash-the-power-of-storing-json-in-postgres"
+target="_blank">this post from the Codeship blog</a>,
+especially if you are planning to store javascript objects (pro-tip: you can use
+`default: {}` in your migrations if needed). In the meantime, happy hacking!
