@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2016-07-10T17:27:18-07:00</updated>
+  <updated>2016-07-12T16:20:09-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -493,9 +493,7 @@ easier.</p>
     <link href="http://jeromedalbert.com/leveraging-rails-custom-configuration"/>
     <updated>2015-10-17T16:52:00-07:00</updated>
     <id>http://jeromedalbert.com/leveraging-rails-custom-configuration</id>
-    <content type="html"><![CDATA[<p><img class="header"
-src="https://c2.staticflickr.com/6/5641/22236919056_b4cd72cd09_m.jpg"
-title="Pimp my Rails" /></p>
+    <content type="html"><![CDATA[<p><img class="header" src="https://c2.staticflickr.com/6/5641/22236919056_b4cd72cd09_m.jpg" title="Pimp my Rails" /></p>
 
 <p>These days, I use environment variables for credentials and other sensitive data
 (<code>secrets.yml</code> could do the job but is too boilerplate-y for my taste). Dummy
@@ -1350,9 +1348,7 @@ to insert the text with a <code>\n</code> in the end.</p>
     <link href="http://jeromedalbert.com/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities"/>
     <updated>2013-11-10T16:50:00-08:00</updated>
     <id>http://jeromedalbert.com/what-traffic-do-you-get-when-mentioned-by-several-ruby-authorities</id>
-    <content type="html"><![CDATA[<p><img class="header noarticle"
-src="http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg"
-title="Jam. Yummy" /></p>
+    <content type="html"><![CDATA[<p><img class="header noarticle" src="http://farm8.staticflickr.com/7384/11699976083_9d70d5cb25_m.jpg" title="Jam. Yummy" /></p>
 
 <p><span class="article-only"><em>EDIT: Some of my latest articles have had traffic
 orders of magnitude larger than the one mentioned below, making the figures
