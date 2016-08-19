@@ -9,9 +9,7 @@
   <meta name="author" content="Jerome Dalbert">
 
   
-  <meta name="description" content="<img class="header"
-src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title=
-"Froot loops. Loop, iteration... Got it? Hahaha. So &hellip;">
+  <meta name="description" content="If any of you have written code in the last year that had an explicit loop [&#8230;], you don&#8217;t understand collections.Professor David West &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,7 +84,7 @@ src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title=
   
 
 
-<time datetime="2014-01-05T14:12:00-08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
+<time datetime="2014-01-05T14:12:00+01:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -95,28 +93,23 @@ src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title=
   </header>
 
 
-<div class="entry-content"><p><img class="header"
-src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title=
-"Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here."
-/></p>
+<div class="entry-content"><p><img class="header" src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title= "Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here." /></p>
 
 <div class="left-header">
 <blockquote><p>If any of you have written code in the last year that had an explicit loop [&#8230;], you don&#8217;t understand collections.</p><footer><strong>Professor David West</strong> <cite><a href="http://vimeo.com/77415896#t=48m04s" target="_blank">OOP Is Dead! Long Live OODD!</a></cite></footer></blockquote>
 </div>
 
 
-<p>You may be baffled by this quote if you come from a C-flavored language such as
-C++ and Java<!--more-->, where explicit loops like <code>for</code> and <code>foreach</code> are part
-of your everyday life.</p>
+<p>You may be baffled by this quote if you come from a C-flavored language such as C++ and Java<!--more-->,
+where explicit loops like <code>for</code> and <code>foreach</code> are part of your everyday life.</p>
 
-<p>Luckily, collection methods come built-in with Ruby. Once you realize how
-powerful they are compared to explicit loops, there is no going back!</p>
+<p>Luckily, collection methods come built-in with Ruby.
+Once you realize how powerful they are compared to explicit loops, there is no going back!</p>
 
 <h2>each</h2>
 
 <p>Let&rsquo;s begin with the collection method that has the least added value.<br/>
-<code>each</code> is the equivalent of a <code>for</code> loop. Use it when you need to iterate on a
-collection with side effects.</p>
+<code>each</code> is the equivalent of a <code>for</code> loop. Use it when you need to iterate on a collection with side effects.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -132,8 +125,7 @@ collection with side effects.</p>
 <h2>map</h2>
 
 <p><em>(alias to avoid: collect)</em><br/>
-Whenever you need to transform some values into some other values, <code>map</code> is your
-friend.</p>
+Whenever you need to transform some values into some other values, <code>map</code> is your friend.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -191,11 +183,10 @@ Very useful when you need to find a single value.</p>
 <h2>reduce</h2>
 
 <p><em>(alias to avoid: inject)</em><br/>
-<code>reduce</code> is very important in functionnal programming, where it is also known as
-<code>fold</code>. Indeed, it can be used to build everything else: <code>map</code>, <code>select</code>,
-<code>find</code>, <code>min</code>, <code>max</code>, sums, etc.<br/>
-The idea is to use an accumulator that will contain the final result. This
-accumulator can be anything: a number, an array, a hash, etc.</p>
+<code>reduce</code> is very important in functionnal programming, where it is also known as <code>fold</code>.
+Indeed, it can be used to build everything else: <code>map</code>, <code>select</code>, <code>find</code>, <code>min</code>, <code>max</code>, sums, etc.<br/>
+The idea is to use an accumulator that will contain the final result.
+This accumulator can be anything: a number, an array, a hash, etc.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -228,8 +219,7 @@ accumulator can be anything: a number, an array, a hash, etc.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I rarely use <code>reduce</code> in practice, but it is fun and good to know for your
-computer science culture.</p>
+<p>I rarely use <code>reduce</code> in practice, but it is fun and good to know for your computer science culture.</p>
 
 <h2>all?</h2>
 
@@ -249,8 +239,7 @@ computer science culture.</p>
 
 <p>Self-explanatory.</p>
 
-<p>By the way, I like using the &ldquo;no block&rdquo; form of <code>any?</code> to ask if something &ldquo;has
-any&rdquo; significant element:</p>
+<p>By the way, I like using the &ldquo;no block&rdquo; form of <code>any?</code> to ask if something &ldquo;has any&rdquo; significant element:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -263,8 +252,7 @@ any&rdquo; significant element:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I find it more expressive than <code>!some_array.empty?</code>. This is just a matter of
-personal taste: feel free to use whichever you want.</p>
+<p>I find it more expressive than <code>!some_array.empty?</code>.</p>
 
 <h2>times</h2>
 
@@ -296,8 +284,8 @@ personal taste: feel free to use whichever you want.</p>
 
 <h2>But&hellip; I want indexes!</h2>
 
-<p>On top of the current element, you also need the current index? Worry not,
-fellow citizen. Ruby has it all.</p>
+<p>On top of the current element, you also need the current index?
+Worry not, fellow citizen. Ruby has it all.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -316,17 +304,18 @@ fellow citizen. Ruby has it all.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>In practice I don&rsquo;t use <code>each_with_index</code> very often. I never had to use
-<code>map.with_index</code>, but I put it for the sake of being comprehensive.</p>
+<p>In practice I don&rsquo;t use <code>each_with_index</code> very often.
+I never had to use <code>map.with_index</code>, but I put it for the sake of being comprehensive.</p>
 
 <h2>Explicit loops</h2>
 
-<p>Collection methods will probably cover 90% of your needs. What is certain is
-that you won&rsquo;t need to use a <code>for</code> loop ever again.</p>
+<p>Collection methods will probably cover 90% of your needs.
+What is certain is that you won&rsquo;t need to use a <code>for</code> loop ever again.</p>
 
 <p>However, there are cases when the number of iterations in not known in advance:
-if you work on an algorithm or low-level code, for example. This is a typical
-job for <code>while</code> and <code>until</code>. In this case, these explicit loops are ok to use.</p>
+if you work on an algorithm or low-level code, for example.
+This is a typical job for <code>while</code> and <code>until</code>.
+In this case, these explicit loops are ok to use.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -349,8 +338,8 @@ job for <code>while</code> and <code>until</code>. In this case, these explicit 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>You may want to use an infinite loop: for example the main infinite loop of a
-video game. Here is the syntax:</p>
+<p>You may want to use an infinite loop: for example the main infinite loop of a video game.
+Here is the syntax:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -385,12 +374,9 @@ video game. Here is the syntax:</p>
 <p>Don&rsquo;t do this to excess though!</p>
 
 <p>This article covers the main collection methods: feel free to dive into the
-<a href="http://ruby-doc.org/core" target="_blank">Ruby Core documentation</a>
-for more.<br/>
-Finally, if you are wondering why I avoid aliases such as <em>collect</em> and
-<em>inject</em>, you can read this community-driven
-<a href="https://github.com/bbatsov/ruby-style-guide#naming" target="_blank">Ruby style guide</a>
-and submit a bug if you don&rsquo;t agree. :&ndash;)</p>
+<a href="http://ruby-doc.org/core" target="_blank">Ruby Core documentation</a> for more.<br/>
+Finally, if you are wondering why I avoid aliases such as <em>collect</em> and <em>inject</em>, you can read this community-driven
+<a href="https://github.com/bbatsov/ruby-style-guide#naming" target="_blank">Ruby style guide</a>.</p>
 </div>
 
 
@@ -413,7 +399,7 @@ and submit a bug if you don&rsquo;t agree. :&ndash;)</p>
   
 
 
-<time datetime="2014-01-05T14:12:00-08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
+<time datetime="2014-01-05T14:12:00+01:00" pubdate data-updated="true">Jan 5<span>th</span>, 2014</time>
       
 
 

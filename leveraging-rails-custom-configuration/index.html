@@ -85,7 +85,7 @@
   
 
 
-<time datetime="2015-10-17T16:52:00-07:00" pubdate data-updated="true">Oct 17<span>th</span>, 2015</time>
+<time datetime="2015-10-17T16:52:00+02:00" pubdate data-updated="true">Oct 17<span>th</span>, 2015</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -97,36 +97,29 @@
 <div class="entry-content"><p><img class="header" src="https://c2.staticflickr.com/6/5641/22236919056_b4cd72cd09_m.jpg" title="Pimp my Rails" /></p>
 
 <p>These days, I use environment variables for credentials and other sensitive data
-(<code>secrets.yml</code> could do the job but is too boilerplate-y for my taste). Dummy
-environment values are stored in my project
-<a href="https://github.com/bkeepers/dotenv" target="_blank">dotenv</a>
-file and production values are deployed to the PaaS server of my choice with a
-simple <code>heroku config:set</code> / <code>eb setenv</code> / etc.</p>
+(<code>secrets.yml</code> could do the job but is too boilerplate-y for my taste).
+Dummy environment values are stored in my project
+<a href="https://github.com/bkeepers/dotenv" target="_blank">dotenv</a> file
+and production values are deployed to the PaaS server of my choice with a simple
+<code>heroku config:set</code> / <code>eb setenv</code> / etc.</p>
 
-<p>But what about non-sensitive configuration values such as emails or your company
-address?<!--more--></p>
+<p>But what about non-sensitive configuration values such as emails or your company address?<!--more--></p>
 
-<p>Storing them in environment variables both in your project and in your server is
-overkill and not really compliant with
+<p>Storing them in environment variables both in your project and in your server is overkill and not really compliant with
 <a href="http://12factor.net/config" target="_blank">12 factor apps</a>.
-Those values are best stored in your project source code, in some sort of
-configuration file.</p>
+Those values are best stored in your project source code, in some sort of configuration file.</p>
 
 <p>Rails 4.2 introduced a
-<a href="http://guides.rubyonrails.org/configuring.html#custom-configuration"
-target="_blank">custom configuration object</a>
+<a href="http://guides.rubyonrails.org/configuring.html#custom-configuration" target="_blank">custom configuration object</a>
 that can be accessed with <code>Rails.configuration.x</code>, and
-<a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html#railties-notable-changes"
-target="_blank">Rails.application.config_for</a>
-loads YAML file values depending on the environment. By combining those two
-features, you can have all your custom configuration in a handy all-in-one YAML
-file!</p>
+<a href="http://edgeguides.rubyonrails.org/4_2_release_notes.html#railties-notable-changes" target="_blank">Rails.application.config_for</a>
+loads YAML file values depending on the environment.
+By combining those two features, you can have all your custom configuration in a handy all-in-one YAML file!</p>
 
 <p>Say your project is called MyApp:</p>
 
 <ul>
-<li>Create a <code>my_app.yml</code> file in the <code>config</code> directory. It would look something
-like this:</li>
+<li>Create a <code>my_app.yml</code> file in the <code>config</code> directory. It would look something like this:</li>
 </ul>
 
 
@@ -200,10 +193,10 @@ like this:</li>
 
 
 <p>You can see that I wrap the loaded configuration hash in a
-<a href="https://github.com/intridea/hashie#mash" target="_blank">hashie Mash</a>
-object. I just use it for convenience so that I can access configuration
-variables with dots rather than brackets (it&rsquo;s like <code>OpenStruct</code> with nested
-hash support). To use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code>.</p>
+<a href="https://github.com/intridea/hashie#mash" target="_blank">hashie Mash</a> object.
+I just use it for convenience so that I can access configuration variables with dots rather than brackets
+(it&rsquo;s like <code>OpenStruct</code> with nested hash support).
+To use it, add <code>gem 'hashie'</code> to your <code>Gemfile</code>.</p>
 
 <ul>
 <li>You can now access your configuration variables anywhere in your app like so:</li>
@@ -217,9 +210,9 @@ hash support). To use it, add <code>gem 'hashie'</code> to your <code>Gemfile</c
 
 <p></p>
 
-<p>I hope that in future releases, Rails will improve its secret and configuration
-handling so that they can be even easier to use out of the box. But for now,
-this will do!</p>
+<p>I hope that in future releases, Rails will improve its secret and configuration handling
+so that they can be even easier to use out of the box.
+But for now, this will do!</p>
 </div>
 
 
@@ -242,7 +235,7 @@ this will do!</p>
   
 
 
-<time datetime="2015-10-17T16:52:00-07:00" pubdate data-updated="true">Oct 17<span>th</span>, 2015</time>
+<time datetime="2015-10-17T16:52:00+02:00" pubdate data-updated="true">Oct 17<span>th</span>, 2015</time>
       
 
 
