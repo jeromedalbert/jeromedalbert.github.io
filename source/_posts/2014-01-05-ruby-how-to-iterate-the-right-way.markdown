@@ -6,10 +6,7 @@ comments: true
 categories: 
 ---
 
-<img class="header"
-src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title=
-"Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here."
-/>
+<img class="header" src="http://farm8.staticflickr.com/7377/11753946913_0bbf38c9bf_m.jpg" title= "Froot loops. Loop, iteration... Got it? Hahaha. So hilarious. We're having a ball here." />
 
 <div class="left-header">
 {% blockquote Professor David West, <a href="http://vimeo.com/77415896#t=48m04s" target="_blank">OOP is Dead! Long Live OODD!</a> %}
@@ -17,18 +14,16 @@ If any of you have written code in the last year that had an explicit loop [...]
 {% endblockquote %}
 </div>
 
-You may be baffled by this quote if you come from a C-flavored language such as
-C++ and Java<!--more-->, where explicit loops like `for` and `foreach` are part
-of your everyday life.
+You may be baffled by this quote if you come from a C-flavored language such as C++ and Java<!--more-->,
+where explicit loops like `for` and `foreach` are part of your everyday life.
 
-Luckily, collection methods come built-in with Ruby. Once you realize how
-powerful they are compared to explicit loops, there is no going back!
+Luckily, collection methods come built-in with Ruby.
+Once you realize how powerful they are compared to explicit loops, there is no going back!
 
 ## each
 
 Let's begin with the collection method that has the least added value.  
-`each` is the equivalent of a `for` loop. Use it when you need to iterate on a
-collection with side effects.
+`each` is the equivalent of a `for` loop. Use it when you need to iterate on a collection with side effects.
 
 ``` ruby
 ['a', 'b', 'c'].each do |e|
@@ -41,8 +36,7 @@ For your information, Ruby also has a `for` statement (nobody uses it though).
 ## map
 
 *(alias to avoid: collect)*  
-Whenever you need to transform some values into some other values, `map` is your
-friend.
+Whenever you need to transform some values into some other values, `map` is your friend.
 
 ``` ruby
 [1, 2, 3].map { |e| e * 2 } # returns [2, 4, 6]
@@ -91,11 +85,10 @@ Very useful when you need to find a single value.
 ## reduce
 
 *(alias to avoid: inject)*  
-`reduce` is very important in functionnal programming, where it is also known as
-`fold`. Indeed, it can be used to build everything else: `map`, `select`,
-`find`, `min`, `max`, sums, etc.  
-The idea is to use an accumulator that will contain the final result. This
-accumulator can be anything: a number, an array, a hash, etc.
+`reduce` is very important in functionnal programming, where it is also known as `fold`.
+Indeed, it can be used to build everything else: `map`, `select`, `find`, `min`, `max`, sums, etc.  
+The idea is to use an accumulator that will contain the final result.
+This accumulator can be anything: a number, an array, a hash, etc.
 
 ``` ruby
 [1, 2, 3].reduce(0) { |acc, e| acc + e } # returns 6 (0 + 1 + 2 + 3).
@@ -114,8 +107,7 @@ accumulator can be anything: a number, an array, a hash, etc.
 [0, 2, 3, 4].reduce { |acc, e| acc * e } # returns 0 (0 * 2 * 3 * 4)
 ```
 
-I rarely use `reduce` in practice, but it is fun and good to know for your
-computer science culture.
+I rarely use `reduce` in practice, but it is fun and good to know for your computer science culture.
 
 ## all?
 
@@ -133,8 +125,7 @@ Self-explanatory.
 
 Self-explanatory.
 
-By the way, I like using the "no block" form of `any?` to ask if something "has
-any" significant element:
+By the way, I like using the "no block" form of `any?` to ask if something "has any" significant element:
 ``` ruby
 [3, 4].any? # returns true
 [].any? # returns false
@@ -142,8 +133,7 @@ any" significant element:
 [false].any? # returns false
 ```
 
-I find it more expressive than `!some_array.empty?`. This is just a matter of
-personal taste: feel free to use whichever you want.
+I find it more expressive than `!some_array.empty?`.
 
 ##  times
 
@@ -168,8 +158,8 @@ employees.sort_by {|e| e.last_name} # sort your employees by last name
 
 ## But... I want indexes!
 
-On top of the current element, you also need the current index? Worry not,
-fellow citizen. Ruby has it all.
+On top of the current element, you also need the current index?
+Worry not, fellow citizen. Ruby has it all.
 
 ``` ruby
 ['a', 'b', 'c'].each_with_index do |e, i|
@@ -181,17 +171,18 @@ end
 end
 ```
 
-In practice I don't use `each_with_index` very often. I never had to use
-`map.with_index`, but I put it for the sake of being comprehensive.
+In practice I don't use `each_with_index` very often.
+I never had to use `map.with_index`, but I put it for the sake of being comprehensive.
 
 ## Explicit loops
 
-Collection methods will probably cover 90% of your needs. What is certain is
-that you won't need to use a `for` loop ever again. 
+Collection methods will probably cover 90% of your needs.
+What is certain is that you won't need to use a `for` loop ever again. 
 
 However, there are cases when the number of iterations in not known in advance:
-if you work on an algorithm or low-level code, for example. This is a typical
-job for `while` and `until`. In this case, these explicit loops are ok to use.
+if you work on an algorithm or low-level code, for example.
+This is a typical job for `while` and `until`.
+In this case, these explicit loops are ok to use.
 
 ``` ruby
 finished = false
@@ -205,8 +196,8 @@ while x > 0
 end
 ```
 
-You may want to use an infinite loop: for example the main infinite loop of a
-video game. Here is the syntax:
+You may want to use an infinite loop: for example the main infinite loop of a video game.
+Here is the syntax:
 
 ``` ruby
 loop do
@@ -232,9 +223,6 @@ Ruby collection methods become even more powerful if you combine them:
 Don't do this to excess though!
 
 This article covers the main collection methods: feel free to dive into the
-<a href="http://ruby-doc.org/core" target="_blank">Ruby Core documentation</a>
-for more.  
-Finally, if you are wondering why I avoid aliases such as *collect* and
-*inject*, you can read this community-driven
-<a href="https://github.com/bbatsov/ruby-style-guide#naming" target="_blank">Ruby style guide</a>
-and submit a bug if you don't agree. :-)
+<a href="http://ruby-doc.org/core" target="_blank">Ruby Core documentation</a> for more.  
+Finally, if you are wondering why I avoid aliases such as *collect* and *inject*, you can read this community-driven
+<a href="https://github.com/bbatsov/ruby-style-guide#naming" target="_blank">Ruby style guide</a>.

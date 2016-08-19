@@ -6,37 +6,33 @@ comments: true
 categories: 
 ---
 
-<img class="header"
-src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title=
-"Pipe the whole result to the &quot;lolcat&quot; Ruby gem for better effect." />
+<img class="header" src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title= "Pipe the whole result to the &quot;lolcat&quot; Ruby gem for better effect." /> 
 
 Zsh is an amazing shell, and
 <a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">Oh-my-zsh</a>
-is very good at showcasing its power without having to dive into too much
-configuration. I recommend it to Zsh first-timers: within minutes they can enjoy
-autocompletion on steroids, crazy prompt tweaking, git integration as well as
-many other plugins.
+is very good at showcasing its power without having to dive into too much configuration.
+I recommend it to Zsh first-timers: within minutes they can enjoy autocompletion on steroids,
+crazy prompt tweaking, git integration as well as many other plugins.
 
 BUT. It's God. Damn. Slow!<!--more-->
 
-Wanna spend the night happily coding and hacking in the "zone"? Here, wait for 1
-long second (or more) whenever you open up a new terminal window/tab. Are you
-triggering tab autocompletion? Oh boy. Come back tomorrow.
+Wanna spend the night happily coding and hacking in the "zone"?
+Here, wait for 1 long second (or more) whenever you open up a new terminal window/tab.
+Are you triggering tab autocompletion? Oh boy. Come back tomorrow.
 
 Enter
 <a href="https://github.com/sorin-ionescu/prezto" target="_blank">Prezto</a>,
-a.k.a the "Instantly Awesome Zsh". It began as a fork of Oh-my-zsh, but was
-later completely rewritten with optimization in mind, and moved to its own repo.
+a.k.a the "Instantly Awesome Zsh".
+It began as a fork of Oh-my-zsh, but was later completely rewritten with optimization in mind, and moved to its own repo.
 
-Here's how I migrated in order to have the exact same behavior as before, while
-still having a fast shell. Yes, I like to have my cake and eat it too.
+Here's how I migrated in order to have the exact same behavior as before, while still having a fast shell.
+Yes, I like to have my cake and eat it too.
 
 ## Installation
 
 Very straightforward:
 
-- Backup your existing configuration: `~/.oh-my-zsh`, `~/.zshrc` and your
-  possible other dotfiles
+- Backup your existing configuration: `~/.oh-my-zsh`, `~/.zshrc` and your possible other dotfiles
 - Uninstall Oh-my-zsh by running `uninstall_oh_my_zsh`
 - Install Prezto by following the quick instructions on the
   <a href="https://github.com/sorin-ionescu/prezto" target="_blank">github repo</a>
@@ -64,33 +60,29 @@ alias gl="git pull --rebase"
 ...
 ```
 
-- If you like to organize your exports/aliases/etc into separate files, have a
-  look at the other dotfiles. I personally don't do that and just have one
-  massive `~/.zshrc`.
+- If you like to organize your exports/aliases/etc into separate files,
+  have a look at the other dotfiles. I personally don't do that and just have one massive `~/.zshrc`.
 
 ## Customizing the prompt
 
 Now to the fun part!  
 Prezto contains half a dozen
 <a href="https://github.com/sorin-ionescu/prezto#themes" target="_blank">example themes</a>
-compared to the 140 (!) ones of Oh-my-zsh. If you have a custom
-prompt like me, you will need to tinker a bit.
+compared to the 140 (!) ones of Oh-my-zsh.
+If you have a custom prompt like me, you will need to tinker a bit.
 
-My theme is quite minimalist: just display the current path followed by `$` and
-a space. When in a Git repo, I like to display the branch name followed by a
-dirty/clean indicator like so:
+My theme is quite minimalist: just display the current path followed by `$` and a space.
+When in a Git repo, I like to display the branch name followed by a dirty/clean indicator like so:
 
 <img src="https://farm6.staticflickr.com/5562/14685304517_58427bb488_o.png"
 title="Dirty vs Clean" />
 
-At the time of writing, most Prezto themes use `vcs_info` which can detect
-staged and unstaged changes (i.e. a dirty state). But there's no hook for a
-clean state, so when there are no changes, the prompt will just display nothing.
-I would much rather have a satisfying green little tick that means "Nothing else
-to do! Well done mate, you can have a beer\* now".
+At the time of writing, most Prezto themes use `vcs_info` which can detect staged and unstaged changes (i.e. a dirty state).
+But there's no hook for a clean state, so when there are no changes, the prompt will just display nothing.
+I would much rather have a satisfying green little tick that means
+"Nothing else to do! Well done mate, you can have a beer\* now".
 
-For this, we need to use `git-info` from the Prezto `git` plugin. I ended up
-with this:
+For this, we need to use `git-info` from the Prezto `git` plugin. I ended up with this:
 
 ```
 function prompt_jerome_precmd {
@@ -126,8 +118,8 @@ prompt_jerome_setup "$@"
 ```
 
 I then saved the theme in
-`~/.zprezto/modules/prompt/functions/prompt_jerome_setup` and made Prezto use it
-by having this line in `~/.zpreztorc`:
+`~/.zprezto/modules/prompt/functions/prompt_jerome_setup`
+and made Prezto use it by having this line in `~/.zpreztorc`:
 ``` sh
 zstyle ':prezto:module:prompt' theme 'jerome'
 ```
@@ -136,8 +128,7 @@ Done.
 
 ## Last bits and pieces
 
-- I added `history-substring-search` and `git` to the `~/.zpreztorc` plugin
-  list:
+- I added `history-substring-search` and `git` to the `~/.zpreztorc` plugin list:
 ``` sh
 ...
 zstyle ':prezto:load' pmodule \
@@ -155,13 +146,11 @@ zstyle ':prezto:load' pmodule \
 ...
 ```
 
-`history-substring-search`: when pressing up/down arrows, completes the
-beginning of a command by searching in the history.  
-`git`: adds useful aliases and functions like the `git-info` one that we
-discussed above.
+`history-substring-search`: when pressing up/down arrows, completes the beginning of a command by searching in the history.  
+`git`: adds useful aliases and functions like the `git-info` one that we discussed above.
 
-- When pressing tab to complete a command, I didn't like the category menus, so
-  I commented these lines out in `~/.zprezto/modules/completion/init.zsh`:
+- When pressing tab to complete a command, I didn't like the category menus,
+  so I commented these lines out in `~/.zprezto/modules/completion/init.zsh`:
 ```sh
 ...
 # Group matches and describe.
@@ -180,8 +169,7 @@ zstyle ':completion:*:*:*:*:*' menu select
 ...
 ```
 
-I also modified this line in order to have red diretories when autocompleting
-the `cd` command:
+I also modified this line in order to have red diretories when autocompleting the `cd` command:
 ```
 # Directories
 zstyle ':completion:*:default' list-colors ''
@@ -205,17 +193,13 @@ bindkey "^I" expand-or-complete-with-dots
 
 That's it, you now have a fast zsh that behaves like before!
 
-I skipped some very minor configurations in this article, so if you want to
-review exactly what I've done (or if you want to know what kind of crazy stuff I
-put in my `~/.zshrc`), have a look at the commits in my
-<a href="https://github.com/jeromedalbert/prezto/commits/master"
-target="_blank">Prezto fork</a>.
+I skipped some very minor configurations in this article,
+so if you want to review exactly what I've done (or if you want to know what kind of crazy stuff I put in my `~/.zshrc`),
+have a look at the commits in my
+<a href="https://github.com/jeromedalbert/prezto/commits/master" target="_blank">Prezto fork</a>.
 
 Enjoy!
 
-*EDIT: <a href="https://news.ycombinator.com/item?id=8158707"
-target="_blank">Hacker News thread</a>*
+*EDIT: <a href="https://news.ycombinator.com/item?id=8158707" target="_blank">Hacker News thread</a>*
 
-<div class="references">
-*I prefer cider.
-</div>
+<div class="references"> *I prefer cider. </div>
