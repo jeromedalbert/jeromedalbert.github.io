@@ -19,7 +19,7 @@ After a while I moved to London to work for a small startup. It was
 also my first significant Ruby experience and I enjoyed it: this language
 is simple, expressive, and frameworks like Rails make you very productive.
 
-Now I work in San Francisco for a startup called <a href="http://vicinitycommerce.com" target="_blank">Vicinity Commerce</a>,
+Now I work in San Francisco for a startup called <a href="https://stackshare.io" target="_blank">StackShare</a>,
 where I develop various Ruby and Ruby on Rails applications. Who knows what will happen next?
 
 <div class="clear"></div>
