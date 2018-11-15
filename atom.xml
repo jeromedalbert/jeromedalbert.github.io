@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2018-11-13T19:44:31-08:00</updated>
+  <updated>2018-11-14T23:11:13-08:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -586,6 +586,13 @@ But for now, this will do!</p>
     <updated>2014-05-06T22:44:00-07:00</updated>
     <id>http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto</id>
     <content type="html"><![CDATA[<p><img class="header" src="https://farm6.staticflickr.com/5553/14847770315_4dc2f5c4ef_m.jpg" title= "Pipe the whole result to the &quot;lolcat&quot; Ruby gem for better effect." /></p>
+
+<p><span class="article-only">
+<em>
+EDIT: This article is outdated. I have moved away from Prezto and now use my own
+<a href="https://github.com/jeromedalbert/dotfiles/blob/3e91c7bf8b44b4d989eaab49cc4ca412f7ecbb73/.zshrc">minimal ZSH settings</a>.
+</em>
+</span></p>
 
 <p>Zsh is an amazing shell, and
 <a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">Oh-my-zsh</a>
