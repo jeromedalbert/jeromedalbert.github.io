@@ -4,7 +4,7 @@
   <title><![CDATA[Jerome's Adventures in Software]]></title>
   <link href="http://jeromedalbert.com/atom.xml" rel="self"/>
   <link href="http://jeromedalbert.com/"/>
-  <updated>2019-05-05T20:40:31-07:00</updated>
+  <updated>2021-03-21T16:27:25-07:00</updated>
   <id>http://jeromedalbert.com/</id>
   <author>
     <name><![CDATA[Jerome Dalbert]]></name>
@@ -375,7 +375,7 @@ Splitting controllers is a good answer to that uneasy feeling.</p>
 
 <p>A lot of people like REST because it is uniform and simple.
 Once you understand a (truly) RESTful API, it is easier to understand another one.
-In theory at least: authentication anyone? ;&ndash;).
+In theory at least: authentication anyone? ;-).
 The business logic obviously differs between applications so you have to understand it, but how you consume that logic is the same:
 you
 <a href="https://stripe.com/docs/api#create_charge" target="_blank">create a charge</a>
@@ -1341,7 +1341,7 @@ src="http://farm6.staticflickr.com/5443/10075536704_b78362422d_b.jpg" /></a></p>
 <p>Note: To have a decent layout, I only drew 70% of the
 <a href="http://ruby-doc.org/core-2.0" target="_blank">Ruby 2 Core classes</a>.
 All of the important ones are there, except <code>Random</code>, <code>Time</code>, <code>GC</code> and <code>ObjectSpace</code>:
-when I noticed, it was too late. :&ndash;)</p>
+when I noticed, it was too late. :-)</p>
 
 <h2>What can we &ldquo;draw&rdquo; from this ?</h2>
 
